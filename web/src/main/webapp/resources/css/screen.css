@@ -1,0 +1,399 @@
+@charset "utf8";
+@import url(https://fonts.googleapis.com/css?family=Montserrat|Inconsolata);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+
+/* Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a,
+abbr, acronym, address, big, cite, code, del,
+dfn, em, img, ins, kbd, q, s, samp, small,
+strike, strong, sub, sup, tt, var, b, u, i,
+center, dl, dt, dd, ol, ul, li, fieldset, form,
+label, legend, table, caption, tbody, tfoot, thead,
+tr, th, td, article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup, menu,
+nav, output, ruby, section, summary, time, mark,
+audio, video{
+    margin         : 0;
+    padding        : 0;
+    border         : 0;
+    font-size      : 100%;
+    font           : inherit;
+    vertical-align : baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section{
+    display : block;
+}
+ol, ul{
+    list-style : none;
+}
+blockquote, q{
+    quotes : none;
+}
+blockquote:before, blockquote:after, q:before, q:after{
+    content : '';
+    content : none;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus{
+    outline : none;
+}
+table{
+    border-collapse : collapse;
+    border-spacing  : 0;
+}
+body{
+    -webkit-text-size-adjust : none;
+    -webkit-font-smoothing   : antialiased;
+    -moz-osx-font-smoothing  : grayscale;
+}
+/* Box Model */
+html{
+    -moz-box-sizing    : border-box;
+    -webkit-box-sizing : border-box;
+    box-sizing         : border-box;
+}
+*, *:before, *:after{
+    -moz-box-sizing    : inherit;
+    -webkit-box-sizing : inherit;
+    box-sizing         : inherit;
+}
+/* Standards */
+a{
+    cursor          : pointer;
+    text-decoration : none;
+}
+/* --------------------------------------- */
+/* --------------------------------------- */
+
+.tmp-element{
+    visibility  : hidden;
+    white-space : pre;
+}
+noscript{
+    display    : block;
+    width      : 100vw;
+    height     : 100vh;
+    background : #1f8a70;
+    color      : #ffffff;
+    text-align : center;
+    padding    : 40vh 40px;
+    z-index    : 9001;
+    position   : fixed;
+    top        : 0;
+    left       : 0;
+}
+body{
+    position    : relative;
+    height      : 100vh;
+    font-family : "Montserrat", Arial, Helvetica, sans-serif;
+    font-size   : 1em;
+    color       : #232323;
+}
+body > header{
+    position   : fixed;
+    z-index    : 100;
+    top        : 0;
+    left       : 0;
+    width      : 100vw;
+    background : #1f8a70;
+    box-shadow : 0 5px 50px 0 rgba(0, 0, 0, 0.75);
+}
+#top{
+    margin    : 30px 50px;
+    font-size : 1.3em;
+    color     : #ffffff;
+}
+#top form{
+    display : inline;
+}
+#top h1{
+    display : none;
+}
+#top a:focus,
+#top a:hover{
+    color            : #1f8a70;
+    background-color : #ffffff;
+}
+#top a{
+    float         : right;
+    display       : inline-block;
+    border        : solid 3px #ffffff;
+    border-radius : 3px;
+    color         : inherit;
+    font-size     : .75em;
+    margin        : -3px 0 0;
+    padding       : 5px 10px;
+    transition    : color 500ms, background-color 500ms;
+}
+#top a span{
+    font-size    : .9em;
+    padding-left : 9px;
+}
+#top input#txt_cityName:focus{
+    min-width           : 250px;;
+    border-bottom-color : #1f8a70;
+}
+#top input#txt_cityName{
+    background    : transparent;
+    border        : none;
+    border-bottom : dashed 1px #ffffff;
+    font          : inherit;
+    color         : inherit;
+    width         : 250px;
+    min-width     : 50px;
+    transition    : border-bottom-color 500ms, min-width 500ms;
+}
+#top input[type=submit]{
+    background  : transparent;
+    border      : none;
+    color       : #ffffff;
+    font-family : "FontAwesome", monospace;
+    font-size   : .75em;
+    cursor      : pointer;
+}
+#map{
+    position : fixed;
+    top      : 0;
+    left     : 0;
+    z-index  : 1;
+    width    : 100vw;
+    height   : calc(100vh - 25px);
+}
+#cards{
+    position    : fixed;
+    z-index     : 10;
+    bottom      : 25px;
+    left        : 0;
+    background  : transparent;
+    padding     : 0 50px;
+    width       : 100vw;
+    height      : 400px;
+    overflow-x  : scroll;
+    overflow-y  : visible;
+    white-space : nowrap;
+    display     : flex;
+}
+.card:hover, .card.focussed{
+    height : 300px;
+}
+.card{
+    overflow      : hidden;
+    position      : relative;
+    background    : #ffffff;
+    border        : solid 3px #1f8a70;
+    border-bottom : none;
+    border-radius : 3px 3px 0 0;
+    display       : inline-block;
+    width         : 360px !important;
+    padding       : 20px 40px;
+    height        : 75px;
+    align-self    : flex-end;
+    flex-shrink   : 0;
+    box-shadow    : 0 0 50px 0 rgba(0, 0, 0, 0.5);
+    transition    : height 150ms ease-out;
+    margin-right  : 20px;
+}
+.card .lock{
+    position          : absolute;
+    top               : 0;
+    left              : 0;
+    width             : 50px;
+    height            : 50px;
+    padding           : 5px 10px;
+    clip-path         : polygon(0 0, 0% 100%, 100% 0);
+    -webkit-clip-path : polygon(0 0, 0% 100%, 100% 0);
+    background        : #1f8a70;
+    color             : #ffffff;
+}
+.card h2{
+    color     : #1f8a70;
+    font-size : 1.6em;
+    padding   : 0 0 10px;
+}
+.card h2 a{
+    color : inherit;
+}
+.card h3{
+    text-transform : uppercase;
+    font-size      : .7em;
+    color          : #999999;
+    margin         : 14px 0 7px;
+}
+.card h3:after{
+    content    : " ";
+    width      : 100%;
+    height     : 1px;
+    margin     : 0 0 3px 7px;
+    display    : inline-block;
+    background : #bbbbbb;
+}
+.card p a{
+    color : #1f8a70;
+}
+.card p{
+    overflow  : hidden;
+    font-size : .8em;
+    padding   : 0 0 0 10px;
+}
+.card .address em{
+    display       : inline-block;
+    margin-bottom : 3px;
+    font-style    : italic;
+}
+.card a.edit{
+    display      : none;
+    background   : #ffffff;
+    color        : #999999;
+    position     : absolute;
+    top          : 0;
+    right        : 0;
+    font-size    : .9em;
+    padding-left : 9px;
+    font-family  : "FontAwesome", monospace;
+}
+.card section{
+    position : relative;
+}
+.card section:hover a.edit{
+    display : inline-block;
+}
+.card li{
+    font-family : "Inconsolata", monospace;
+    padding     : 0 0 0 10px;
+}
+.card li input{
+    background  : transparent;
+    color       : #1f8a70;
+    border      : none;
+    font-family : "FontAwesome", monospace;
+    cursor      : pointer;
+    padding     : 0;
+    margin      : 0;
+}
+.card li form{
+    color     : #1f8a70;
+    float     : right;
+    font-size : .9em;
+}
+.card li form span{
+    text-align  : center;
+    width       : 22px;
+    display     : inline-block;
+    font-family : "Montserrat", Arial, Helvetica, sans-serif;
+    font-size   : .75em;
+}
+body > footer{
+    position   : fixed;
+    z-index    : 40;
+    bottom     : 0;
+    left       : 0;
+    width      : 100vw;
+    height     : 25px;
+    padding    : 7px 50px 0;
+    background : #1f8a70;
+}
+body > footer a{
+    float     : right;
+    color     : #ffffff;
+    font-size : .8em;
+}
+#field{
+    width    : 100vw;
+    margin   : 0 auto;
+    position : fixed;
+    top      : 85px;
+    left     : 0;
+    z-index  : 99;
+    font-size : .85em;
+}
+#field form{
+    display       : block;
+    box-shadow    : 0 5px 50px 0 rgba(0, 0, 0, 0.5);
+    background    : #ffffff;
+    width         : 840px;
+    margin        : 0 auto;
+    border        : solid 3px #1f8a70;
+    border-radius : 3px;
+    padding       : 40px 60px;
+}
+#field h4{
+    color     : #1f8a70;
+    font-size : 1.8em;
+    padding   : 0 0 20px;
+}
+#field h5{
+    text-transform : uppercase;
+    font-size      : .9em;
+    color          : #999999;
+    padding         : 15px 0;
+    display        : block;
+    clear : both;
+}
+#field h5:after{
+    content    : " ";
+    width      : 100%;
+    height     : 1px;
+    margin     : 0 0 3px 7px;
+    display    : inline-block;
+    background : #bbbbbb;
+}
+#field p.description{
+    padding: 0 0 10px;
+
+}
+#field input[type=text]:focus{
+    border-bottom-color : #1f8a70;
+}
+#field input[type=text]{
+    display       : block;
+    border        : none;
+    border-bottom : solid 1px #999999;
+    padding       : 6px 12px;
+    font-size     : .9em;
+    width         : 335px;
+    transition    : border-bottom-color 500ms;
+    margin: 0 10px 15px;
+}
+#field input[type=checkbox]{
+    margin-left: 15px;
+}
+#field label{
+    font-size: .95em;
+    padding: 0 0 10px 10px;
+}
+#field .left{
+    float : left;
+    padding-right : 20px;
+}
+#field .right label{
+    padding-left: 0;
+}
+#field .confirm{
+    text-align: right;
+    padding: 25px 0 0;
+}
+
+#field .confirm input{
+    border        : solid 3px #1f8a70;
+    color: #ffffff;
+    background-color:#1f8a70;
+    border-radius : 3px;
+    padding       : 5px 20px;
+    margin: 0 0 0 10px;
+    font-size : 1.1em;
+    transition    : color 500ms, background-color 500ms;
+    font-family : "Montserrat", Arial, Helvetica, sans-serif;
+    cursor : pointer;
+}
+#field .confirm input[type=button]{
+    border: none;
+}
+#field .confirm input[type=button],
+#field .confirm input[type=submit]:hover{
+    color:        #1f8a70;
+    background-color: #ffffff;
+}
