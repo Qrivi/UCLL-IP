@@ -13,7 +13,7 @@
 
     <groupId>be.krivi.ucll.ip</groupId>
     <artifactId>domain</artifactId>
-    <version>1.0</version>
+    <version>1.0.RELEASE</version>
 
     <dependencies>
         <dependency>
