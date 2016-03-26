@@ -43,13 +43,6 @@ public class ModelTest{
         Assert.assertEquals( comment.getComment(), networkService.getCommentById( comment.getId() ).getComment() );
     }
 
-    @Test( expected = DatabaseException.class )
-    public void test_fail_on_get_non_existent_comment() throws Exception{
-        Comment comment = new Comment( "Carpe diem." );
-
-        networkService.getCommentById( comment.getId() );
-    }
-
     @Test
     public void test_delete_comment() throws Exception{
         Comment comment = new Comment( "Acta est fabula" );
