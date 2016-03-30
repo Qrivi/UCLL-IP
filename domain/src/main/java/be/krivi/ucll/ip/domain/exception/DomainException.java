@@ -13,6 +13,10 @@ public class DomainException extends Exception{
         super( message );
     }
 
+    public DomainException( Throwable throwable ){
+        super( throwable );
+    }
+
     public DomainException( String message, Throwable exception ){
         super( message, exception );
     }

@@ -1,14 +1,22 @@
 package be.krivi.ucll.ip.domain.network;
 
 import be.krivi.ucll.ip.domain.core.Location;
-import be.krivi.ucll.ip.domain.exception.DomainException;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by Krivi on 9/02/16.
  */
+@Entity
+@DiscriminatorValue( "open" )
+@Table(name = "network-open")
 public class OpenNetwork extends Network{
 
-    public OpenNetwork( String ssid, Location location ) throws DomainException{
+    public OpenNetwork(){}
+
+    public OpenNetwork( String ssid, Location location ){
         super( ssid, location );
     }
 

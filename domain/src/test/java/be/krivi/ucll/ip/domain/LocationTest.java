@@ -21,7 +21,6 @@ public class LocationTest{
                 "", // cross street
                 "Laeken", // city
                 1020, // zip code
-                "Brussels", // region
                 "Belgium" // coountry
         );
     }
@@ -36,7 +35,6 @@ public class LocationTest{
                 "", // cross street
                 "Laeken", // city
                 1020, // zip code
-                "Brussels", // region
                 "Belgium" // coountry
         );
     }

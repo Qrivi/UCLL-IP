@@ -1,43 +1,33 @@
 package be.krivi.ucll.ip.domain.db;
 
+import java.util.Properties;
+
 /**
  * Created by Krivi on 21/02/16.
  */
 public class DatabaseFactory{
 
-    public static CommentDB createCommentDB( String type ){
+    public static OpenNetworkDB createOpenNetworkDB( Properties properties ){
+
+        String type = properties.getProperty( "type" );
+        String name = properties.getProperty( "name" );
 
         if( type.equals( "MAP" ) )
-            return new CommentMapDB();
+            return new OpenNetworkMapDB();
         if( type.equals( "DB" ) )
-            return new CommentRDB();
+            return new OpenNetworkRDB( name );
         return null;
     }
 
-    public static LocationDB createLocationDB( String type ){
+    public static ProtectedNetworkDB createProtectedNetworkDB( Properties properties ){
+
+        String type = properties.getProperty( "type" );
+        String name = properties.getProperty( "name" );
 
         if( type.equals( "MAP" ) )
-            return new LocationMapDB();
+            return new ProtectedNetworkMapDB();
         if( type.equals( "DB" ) )
-            return new LocationRDB();
-        return null;
-    }
-
-    public static NetworkDB createNetworkDB( String type ){
-
-        if( type.equals( "MAP" ) )
-            return new NetworkMapDB();
-        if( type.equals( "DB" ) )
-            return new NetworkRDB();
-        return null;
-    }
-
-    public static PasswordDB createPasswordDB( String type ){
-
-        if( type.equals( "MAP" ) )
-            return new PasswordMapDB();
-        if( type.equals( "DB" ) )
-            return new PasswordRDB();
+            return new ProtectedNetworkRDB( name );
         return null;
     }
 }

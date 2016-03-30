@@ -1,12 +1,18 @@
 package be.krivi.ucll.ip.domain.common;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
  * Created by Krivi on 21/02/16.
  */
+@MappedSuperclass
 public class Entity{
 
+    @Id
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "generatorName" )
+    @TableGenerator( name = "generatorName", allocationSize = 1)
+    @Column(name = "id")
     private Integer id;
 
     @Override
@@ -23,8 +29,7 @@ public class Entity{
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode(){
         int hash = 7;
         hash = 17 * hash + Objects.hashCode( this.id );
         return hash;

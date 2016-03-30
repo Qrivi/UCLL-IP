@@ -1,27 +1,57 @@
 package be.krivi.ucll.ip.domain.core;
 
 import be.krivi.ucll.ip.domain.common.Entity;
-import be.krivi.ucll.ip.domain.exception.DomainException;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.Column;
+import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Krivi on 08/02/16.
  */
+@javax.persistence.Entity
+@Table( name = "location" )
 public class Location extends Entity{
 
+    @Column( name = "name" )
     private String name;
 
+    @Min( value = -90, message = "{Min.Location.lat}" )
+    @Max( value = 90, message = "{Max.Location.lat}" )
+    @Column( name = "lat" )
     private double lat;
+
+    @Min( value = -180, message = "{Min.Location.lon}" )
+    @Max( value = 180, message = "{Max.Location.lon}" )
+    @Column( name = "lon" )
     private double lon;
 
+
+    @NotEmpty( message = "NotNull.Location.address" )
+    @Column( name = "address" )
     private String address;
+
+    @Column( name = "crossstreet" )
     private String crossStreet;
+
+    @NotEmpty( message = "NotNull.Location.city" )
+    @Column( name = "city" )
     private String city;
+
+    @NotNull( message = "NotNull.Location.zip" )
+    @Column( name = "zip" )
     private int zip;
 
-    private String region;
+    @NotEmpty( message = "NotNull.Location.country" )
+    @Column( name = "country" )
     private String country;
 
-    public Location( String name, double lat, double lon, String address, String crossStreet, String city, int zip, String region, String country ) throws DomainException{
+    public Location(){}
+
+    public Location( String name, double lat, double lon, String address, String crossStreet, String city, int zip, String country ){
         setName( name );
         setLat( lat );
         setLon( lon );
@@ -29,30 +59,13 @@ public class Location extends Entity{
         setCrossStreet( crossStreet );
         setCity( city );
         setZip( zip );
-        setRegion( region );
         setCountry( country );
-
-        validateLocation();
-    }
-
-    public boolean validateLocation() throws DomainException{
-        if( lat == 0 || lon == 0 || lat > 90 || lon > 180 || lat < -90 || lon < -180 )
-            throw new DomainException( "Location does not have valid coordinates" );
-        if( country.equals( "" ) )
-            throw new DomainException( "Location requires a country" );
-        if( region.equals( "" ) )
-            throw new DomainException( "Location requires a region" );
-        if( city.equals( "" ) )
-            throw new DomainException( "Location requires a city" );
-        if( zip == 0 )
-            throw new DomainException( "Location requires a zip" );
-        return true;
     }
 
     public String toString(){
         if( crossStreet.equals( "" ) )
-            return address + "\n" + zip + " " + city + "\n" + region + ", " + country;
-        return address + "(" + crossStreet + ")" + "\n" + zip + " " + city + "\n" + region + ", " + country;
+            return address + "\n" + zip + " " + city + "\n" + country;
+        return address + "(" + crossStreet + ")" + "\n" + zip + " " + city + "\n" + country;
     }
 
     public String getName(){
@@ -99,9 +112,7 @@ public class Location extends Entity{
         return city;
     }
 
-    public void setCity( String city ) throws DomainException{
-        if( city.equals( "" ) )
-            throw new DomainException( "City is a required field" );
+    public void setCity( String city ){
         this.city = city;
     }
 
@@ -109,29 +120,15 @@ public class Location extends Entity{
         return zip;
     }
 
-    public void setZip( int zip ) throws DomainException{
-        if( zip == 0 )
-            throw new DomainException( "Zip is a required field" );
+    public void setZip( int zip ){
         this.zip = zip;
-    }
-
-    public String getRegion(){
-        return region;
-    }
-
-    public void setRegion( String region ) throws DomainException{
-        if( region.equals( "" ) )
-            throw new DomainException( "Region is a required field" );
-        this.region = region;
     }
 
     public String getCountry(){
         return country;
     }
 
-    public void setCountry( String country ) throws DomainException{
-        if( country.equals( "" ) )
-            throw new DomainException( "Country is a required field" );
+    public void setCountry( String country ){
         this.country = country;
     }
 }

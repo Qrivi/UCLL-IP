@@ -1,29 +1,44 @@
 package be.krivi.ucll.ip.domain.network;
 
 import be.krivi.ucll.ip.domain.common.Entity;
-import be.krivi.ucll.ip.domain.exception.DomainException;
 import be.krivi.ucll.ip.domain.core.Comment;
 import be.krivi.ucll.ip.domain.core.Location;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Krivi on 8/02/16.
  */
+@javax.persistence.Entity
+@Table( name = "network" )
+@DiscriminatorColumn( name = "type" )
+@Inheritance( strategy = InheritanceType.JOINED )
 public abstract class Network extends Entity{
 
+    @NotNull( message = "{NotNull.Network.ssid}" )
+    @Column( name = "ssid" )
     private String ssid;
+
+    @Valid
+    @NotNull( message = "{NotNull.Network.location}" )
+    @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true )
     private Location location;
 
-    // lists will later change to maps, once their content can be mapped to actual users
-    private List<Comment> comments;
+    @Valid
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true )
+    private Set<Comment> comments;
 
-    public Network( String ssid, Location location ) throws DomainException{
+    public Network(){}
+
+    public Network( String ssid, Location location ){
         setSsid( ssid );
         setLocation( location );
 
-        comments = new ArrayList<>(  );
+        comments = new HashSet<>();
     }
 
     public abstract NetworkType getType();
@@ -32,9 +47,7 @@ public abstract class Network extends Entity{
         return ssid;
     }
 
-    public void setSsid( String ssid ) throws DomainException{
-        if( ssid.isEmpty() )
-            throw new DomainException( "Network requires valid SSID" );
+    public void setSsid( String ssid ){
         this.ssid = ssid;
     }
 
@@ -54,7 +67,7 @@ public abstract class Network extends Entity{
         comments.remove( comment );
     }
 
-    public List<Comment> getComments(){
+    public Set<Comment> getComments(){
         return comments;
     }
 }

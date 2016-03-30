@@ -5,7 +5,14 @@
 
     <bean id="service" class="be.krivi.ucll.ip.domain.service.NetworkService">
         <constructor-arg>
-            <value>MAP</value>
+            <props>
+                <prop key="name">
+                    networkdatabase
+                </prop>
+                <prop key="type">
+                    DB
+                </prop>
+            </props>
         </constructor-arg>
     </bean>
 

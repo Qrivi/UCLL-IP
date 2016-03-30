@@ -1,18 +1,38 @@
 package be.krivi.ucll.ip.domain.core;
 
 import be.krivi.ucll.ip.domain.common.Entity;
+import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
  * Created by Krivi on 21/02/16.
  */
-public class Password extends Entity{
+@javax.persistence.Entity
+@Table(name = "password")
+public class Password extends Entity implements Comparable<Password>{
 
+    @NotEmpty(message = "{NotNull.Password.password}" )
+    @Column( name = "password" )
     private String password;
-    private Date date;
 
+    @NotNull(message = "{NotNull.Password.timestamp}")
+    @Temporal( TemporalType.TIMESTAMP )
+    @Column( name = "timestamp" )
+    private Date timestamp;
+
+    @Min( value = 0, message = "{Min.Passwords.upvotes}")
+    @Column( name = "upvotes" )
     private int upvotes;
+
+    @Min( value = 0, message = "{Min.Passwords.downvotes}")
+    @Column( name = "downvotes" )
     private int downvotes;
 
     /* The user that created the password needs to be able to remove it
@@ -21,9 +41,11 @@ public class Password extends Entity{
     private int network_id
     */
 
-    public Password( String password, Date date, int upvotes, int downvotes ){
+    public Password(){}
+
+    public Password( String password, Date timestamp, int upvotes, int downvotes ){
         this.password = password;
-        this.date = date;
+        this.timestamp = timestamp;
         this.upvotes = upvotes;
         this.downvotes = downvotes;
     }
@@ -48,7 +70,7 @@ public class Password extends Entity{
         downvotes--;
     }
 
-    public double getScore(){
+    public int getScore(){
         return upvotes - downvotes;
     }
 
@@ -64,7 +86,15 @@ public class Password extends Entity{
         return password;
     }
 
-    public Date getDate(){
-        return date;
+    public Date getTimestamp(){
+        return timestamp;
+    }
+
+    @Override
+    public int compareTo( Password p ){
+        Integer p1score = this.getScore();
+        Integer p2score = p.getScore();
+
+        return p1score.compareTo( p2score );
     }
 }
