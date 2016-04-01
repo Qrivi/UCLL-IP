@@ -12,13 +12,14 @@ import javax.validation.constraints.Size;
  */
 @javax.persistence.Entity
 @Table( name = "comment" )
-public class Comment extends Entity {
+public class Comment extends Entity{
 
-    @NotEmpty( message = "{NotEmpty.Comment.comment}")
-    @Size( min = 2, max = 140, message = "{Size.Comment.comment}")
+    @NotEmpty( message = "{NotEmpty.Comment.comment}" )
+    @Size( min = 2, max = 140, message = "{Size.Comment.comment}" )
     private String comment;
 
-    public Comment(){}
+    public Comment(){
+    }
 
     public Comment( String comment ) throws DomainException{
         setComment( comment );

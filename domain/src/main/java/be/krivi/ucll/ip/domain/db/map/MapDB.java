@@ -1,12 +1,13 @@
 package be.krivi.ucll.ip.domain.db.map;
 
 
+import be.krivi.ucll.ip.domain.common.Database;
 import be.krivi.ucll.ip.domain.common.Entity;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class MapDB<E extends Entity> {
+public abstract class MapDB<E extends Entity> implements Database{
 
     private int index;
     protected Map<Integer, E> map;
@@ -19,5 +20,12 @@ public abstract class MapDB<E extends Entity> {
     protected int generateId()
     {
         return (index++);
+    }
+
+    public void openConnexion(){
+        this.map = new HashMap<>();
+    }
+    public void closeConnexion(){
+        this.map.clear();
     }
 }

@@ -18,7 +18,7 @@ import java.util.Date;
 @Table(name = "password")
 public class Password extends Entity implements Comparable<Password>{
 
-    @NotEmpty(message = "{NotNull.Password.password}" )
+    @NotEmpty(message = "{NotEmpty.Password.password}" )
     @Column( name = "password" )
     private String password;
 
@@ -34,12 +34,6 @@ public class Password extends Entity implements Comparable<Password>{
     @Min( value = 0, message = "{Min.Passwords.downvotes}")
     @Column( name = "downvotes" )
     private int downvotes;
-
-    /* The user that created the password needs to be able to remove it
-    -> wait for Spring, which will handle auth
-    private int user_id; ?
-    private int network_id
-    */
 
     public Password(){}
 

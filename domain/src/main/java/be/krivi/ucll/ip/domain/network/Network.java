@@ -32,7 +32,8 @@ public abstract class Network extends Entity{
     @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true )
     private Set<Comment> comments;
 
-    public Network(){}
+    public Network(){
+    }
 
     public Network( String ssid, Location location ){
         setSsid( ssid );

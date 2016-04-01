@@ -69,6 +69,9 @@ a{
 /* --------------------------------------- */
 /* --------------------------------------- */
 
+i{
+    font-family : "FontAwesome", monospace;
+}
 .tmp-element{
     visibility  : hidden;
     white-space : pre;
@@ -92,6 +95,7 @@ body{
     font-family : "Montserrat", Arial, Helvetica, sans-serif;
     font-size   : 1em;
     color       : #232323;
+    background  : #cccccc;
 }
 body > header{
     position   : fixed;
@@ -99,6 +103,7 @@ body > header{
     top        : 0;
     left       : 0;
     width      : 100vw;
+    height     : 88px;
     background : #1f8a70;
     box-shadow : 0 5px 50px 0 rgba(0, 0, 0, 0.75);
 }
@@ -345,9 +350,11 @@ body > footer a{
     padding: 0 0 10px;
 
 }
+#field input[type=number]:focus,
 #field input[type=text]:focus{
     border-bottom-color : #1f8a70;
 }
+#field input[type=number],
 #field input[type=text]{
     display       : block;
     border        : none;
@@ -396,4 +403,10 @@ body > footer a{
 #field .confirm input[type=submit]:hover{
     color:        #1f8a70;
     background-color: #ffffff;
+}
+.form-error{
+    color: #ff4321;
+    font-size: .9em;
+    display: inline-block;
+    padding-left: 6px;
 }

@@ -81,6 +81,16 @@ public class NetworkService{
         }
     }
 
+    public void openConnection(){
+        openNetworkDB.openConnexion();
+        protectedNetworkDB.openConnexion();
+    }
+
+    public void closeConnection(){
+        openNetworkDB.closeConnexion();
+        protectedNetworkDB.closeConnexion();
+    }
+
     //****************************************************************
     // region OpenNetwork
     //****************************************************************

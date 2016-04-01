@@ -16,4 +16,6 @@
         </constructor-arg>
     </bean>
 
+    <bean id="eventListenerBean" class="be.krivi.ucll.ip.web.listener.ContextListener" />
+
 </beans>

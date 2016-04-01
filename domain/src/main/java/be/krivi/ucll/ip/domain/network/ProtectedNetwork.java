@@ -15,7 +15,7 @@ import java.util.Set;
  */
 @Entity
 @DiscriminatorValue( "protected" )
-@Table(name = "network-protected")
+@Table( name = "network_protected" )
 public class ProtectedNetwork extends Network{
 
     @Valid
@@ -24,7 +24,8 @@ public class ProtectedNetwork extends Network{
     @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true )
     private Set<Password> passwords;
 
-    public ProtectedNetwork(){}
+    public ProtectedNetwork(){
+    }
 
     public ProtectedNetwork( String ssid, Location location, String password ){
         super( ssid, location );

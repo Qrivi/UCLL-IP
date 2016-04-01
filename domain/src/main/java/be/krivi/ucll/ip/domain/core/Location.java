@@ -29,15 +29,14 @@ public class Location extends Entity{
     @Column( name = "lon" )
     private double lon;
 
-
-    @NotEmpty( message = "NotNull.Location.address" )
+    @NotEmpty( message = "NotEmpty.Location.address" )
     @Column( name = "address" )
     private String address;
 
     @Column( name = "crossstreet" )
     private String crossStreet;
 
-    @NotEmpty( message = "NotNull.Location.city" )
+    @NotEmpty( message = "NotEmpty.Location.city" )
     @Column( name = "city" )
     private String city;
 
@@ -45,11 +44,12 @@ public class Location extends Entity{
     @Column( name = "zip" )
     private int zip;
 
-    @NotEmpty( message = "NotNull.Location.country" )
+    @NotEmpty( message = "NotEmpty.Location.country" )
     @Column( name = "country" )
     private String country;
 
-    public Location(){}
+    public Location(){
+    }
 
     public Location( String name, double lat, double lon, String address, String crossStreet, String city, int zip, String country ){
         setName( name );

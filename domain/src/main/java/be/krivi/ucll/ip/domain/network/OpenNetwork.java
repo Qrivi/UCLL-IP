@@ -11,10 +11,11 @@ import javax.persistence.Table;
  */
 @Entity
 @DiscriminatorValue( "open" )
-@Table(name = "network-open")
+@Table( name = "network_open" )
 public class OpenNetwork extends Network{
 
-    public OpenNetwork(){}
+    public OpenNetwork(){
+    }
 
     public OpenNetwork( String ssid, Location location ){
         super( ssid, location );
