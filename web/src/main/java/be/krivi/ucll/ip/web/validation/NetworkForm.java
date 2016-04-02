@@ -1,4 +1,4 @@
-package be.krivi.ucll.ip.web.form;
+package be.krivi.ucll.ip.web.validation;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -8,6 +8,8 @@ import javax.validation.constraints.NotNull;
  * Created by Krivi on 01/04/16.
  */
 public class NetworkForm{
+
+    private Integer id;
 
     private String locationName;
 
@@ -27,10 +29,18 @@ public class NetworkForm{
     @NotEmpty( message = "{NotEmpty.NetworkForm.networkSsid}" )
     private String networkSsid;
 
-    private Boolean networkHasPassword;
+    private Boolean networkProtected;
     private String networkPassword;
 
     public NetworkForm(){
+    }
+
+    public Integer getId(){
+        return id;
+    }
+
+    public void setId( Integer id ){
+        this.id = id;
     }
 
     public String getLocationName(){
@@ -97,21 +107,21 @@ public class NetworkForm{
         this.networkPassword = networkPassword;
     }
 
-    public Boolean getNetworkHasPassword(){
-        return networkHasPassword;
+    public Boolean getNetworkProtected(){
+        return networkProtected;
     }
 
-    public void setNetworkHasPassword( Boolean networkHasPassword ){
-        this.networkHasPassword = networkHasPassword;
+    public void setNetworkProtected( Boolean networkProtected ){
+        this.networkProtected = networkProtected;
     }
 
     // Spring Forms setters
 
     public void setLocationZip( String locationZip ){
-        this.locationZip = Integer.parseInt( locationZip );
+        setLocationZip( Integer.parseInt( locationZip ) );
     }
 
-    public void setNetworkHasPassword( String networkHasPassword ){
-        this.networkHasPassword = Boolean.valueOf( networkHasPassword );
+    public void setNetworkProtected( String networkProtected ){
+        setNetworkProtected( Boolean.valueOf( networkProtected ) );
     }
 }

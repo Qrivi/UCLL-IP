@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <title>Networks</title>
+
+        <link rel="stylesheet" media="screen" href="screen.css">
+
+        <script src="app.js"></script>
+        <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCE41BGnnoE6BvD8NNAKJ-OhrOhyb2rSnw&callback=init"></script>
+    </head>
+    <body>
+        <header>
+            <section id="top">
+                <h1>Networks</h1>
+                <a><i class="fa fa-plus-circle"></i> Add network</a>
+                <form action="" method="get">
+                    <label for="txt_cityName">near the city of</label>
+                    <input type="text" name="city" value="Leuven" id="txt_cityName" autocomplete="off">
+                    <input type="submit" class="fa" value="&#xf040;">
+                </form>
+            </section>
+        </header>
+
+        <main>
+            <section id="map">
+                Loading the map...
+            </section>
+
+            <section id="cards" data-masonry='{ "itemSelector": "article" }'>
+                <article data-lat="1" data-lon="1">
+                    <header>
+                        <h2>Kri-Fi Kot</h2>
+                        <p><i class="fa fa-unlock-alt"></i></p>
+                    </header>
+                    <section>
+                        <h3>Address</h3>
+                        <a class="edit" href="#">&#xf044;</a>
+
+                        <p class="address">
+                            <em>Mijn kot</em><br>
+                            Tervuursestraat 110<br>
+                            3000 Leuven
+                        </p>
+                    </section>
+                    <section class="passwords">
+                        <h3>Password</h3>
+                        <a class="edit" href="#">&#xf044;</a>
+                        <ul>
+                            <li>Pass1234
+                                <form action="#" method="post">
+                                    <input type="submit" name="upvote" value="&#xf164;">
+                                    <span>+69</span>
+                                    <input type="submit" name="downvote" value="&#xf165;">
+                                </form>
+                            </li>
+                        </ul>
+                    </section>
+                    <footer>
+                        <a title="Add comment" href="#">0 comments on this network <i class="fa fa-pencil"></i></a>
+                    </footer>
+                </article>
+            </section>
+
+            <!-- section id="comments">
+                <h4>Comments on &ldquo;StadLeuven Wi-Fi&rdquo;</h4>
+                <i class="fa fa-close"></i>
+                <ul>
+                    <li>Deze wifi lijkt <br>niet te werken</li>
+                    <li>Ik eet graag frietjes</li>
+                    <li>lol frietjes ok wifi bestaat idd niet meer :c</li>
+                </ul>
+                <form method="post" action="">
+                    <input type="text" placeholder="Add your comment here">
+                    <input type="submit" value="&#xf1d9;" class="fa">
+                    <span class="error">You must type a comment first</span>
+                </form>
+            </section>
+
+            <section id="networkform">
+                <h4>Edit &ldquo;McDonald's Free WiFi&rdquo;</h4>
+                <i class="fa fa-close"></i>
+                <form method="post" action="">
+                    <h5>Network details</h5>
+                    <div class="left">
+                        <input type="text" placeholder="SSID"><span class="error">An SSID is required</span>
+                        <input type="checkbox" id="box_hasPassword"><label for="box_hasPassword">Password protected</label>
+                    </div>
+                    <div class="right">
+                        <input type="text" placeholder="Password"><span class="error">A password is required</span>
+                    </div>
+                    <h5>Network location</h5>
+                    <div class="left">
+                        <input type="text" placeholder="Name"><span class="error"></span>
+                        <input type="text" placeholder="Address"><span class="error">An address is required</span>
+                        <input type="number" placeholder="Postal code"><span class="error"></span>
+                        <input type="text" placeholder="Country"><span class="error">A country is required</span>
+                    </div>
+                    <div class="location right">
+                        <input type="text" placeholder="Cross street"><span class="error"></span>
+                        <input type="text" placeholder="City"><span class="error">A city is required</span>
+                    </div>
+                    <div class="buttons">
+                        <input type="submit" value="Verwijderen" class="btnRemove">
+                        <input type="submit" value="Opslaan" class="btnSubmit">
+                    </div>
+                </form>
+            </section-->
+
+            <section id="passwordform">
+                <form method="post" action="">
+                    <h4>Edit &ldquo;StadLeuven Wi-Fi&rdquo;</h4>
+                    <i class="fa fa-close"></i>
+                    <input type="text" placeholder="Password"><span class="error">A password is required</span>
+                    <div class="buttons">
+                        <input type="submit" value="Opslaan" class="btnSubmit">
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <a href="#">Nederlands</a>
+        </footer>
+
+        <noscript>
+            JavaScript is absolutely required in order to use this web service.
+        </noscript>
+    </body>
+</html>

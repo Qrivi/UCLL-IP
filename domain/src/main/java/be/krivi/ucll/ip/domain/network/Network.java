@@ -7,6 +7,7 @@ import be.krivi.ucll.ip.domain.core.Location;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +23,10 @@ public abstract class Network extends Entity{
     @NotNull( message = "{NotNull.Network.ssid}" )
     @Column( name = "ssid" )
     private String ssid;
+
+    @NotNull(message = "{NotNull.Password.timestamp}")
+    @Temporal( TemporalType.TIMESTAMP )
+    private Date timestamp;
 
     @Valid
     @NotNull( message = "{NotNull.Network.location}" )
@@ -50,6 +55,14 @@ public abstract class Network extends Entity{
 
     public void setSsid( String ssid ){
         this.ssid = ssid;
+    }
+
+    public Date getTimestamp(){
+        return timestamp;
+    }
+
+    public void setTimestamp( Date timestamp ){
+        this.timestamp = timestamp;
     }
 
     public Location getLocation(){
