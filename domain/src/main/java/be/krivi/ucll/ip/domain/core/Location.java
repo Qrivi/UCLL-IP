@@ -22,12 +22,12 @@ public class Location extends Entity{
     @Min( value = -90, message = "{Min.Location.lat}" )
     @Max( value = 90, message = "{Max.Location.lat}" )
     @Column( name = "lat" )
-    private double lat;
+    private Double lat;
 
     @Min( value = -180, message = "{Min.Location.lon}" )
     @Max( value = 180, message = "{Max.Location.lon}" )
     @Column( name = "lon" )
-    private double lon;
+    private Double lon;
 
     @NotEmpty( message = "NotEmpty.Location.address" )
     @Column( name = "address" )
@@ -51,7 +51,7 @@ public class Location extends Entity{
     public Location(){
     }
 
-    public Location( String name, double lat, double lon, String address, String crossStreet, String city, int zip, String country ){
+    public Location( String name, Double lat, Double lon, String address, String crossStreet, String city, int zip, String country ){
         setName( name );
         setLat( lat );
         setLon( lon );
@@ -76,19 +76,19 @@ public class Location extends Entity{
         this.name = name;
     }
 
-    public double getLat(){
+    public Double getLat(){
         return lat;
     }
 
-    public void setLat( double lat ){
+    public void setLat( Double lat ){
         this.lat = lat;
     }
 
-    public double getLon(){
+    public Double getLon(){
         return lon;
     }
 
-    public void setLon( double lon ){
+    public void setLon( Double lon ){
         this.lon = lon;
     }
 

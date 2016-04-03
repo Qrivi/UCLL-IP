@@ -2,8 +2,8 @@
 </main>
 
 <footer>
-    <a href="<c:url value="/en"/>">English</a>
-    <a href="<c:url value="/nl"/>">Nederlands</a>
+    <a href="<c:url value="?lang=en"/>">English</a>
+    <a href="<c:url value="?lang=nl"/>">Nederlands</a>
 </footer>
 
 <noscript>

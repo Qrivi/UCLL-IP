@@ -10,7 +10,7 @@
                     networkdatabase
                 </prop>
                 <prop key="type">
-                    MAP
+                    DB
                 </prop>
             </props>
         </constructor-arg>

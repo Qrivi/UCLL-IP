@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <jsp:include page="../parts/header.jsp">
     <jsp:param name="page" value="Edit network"/>
 </jsp:include>
 
 <section id="networkform">
-    <h4>Edit &ldquo;${network.ssid}&rdquo;</h4>
+    <h4>Edit &ldquo;${networkform.networkSsid}&rdquo;</h4>
     <i class="fa fa-close"></i>
-    <sf:form action="/edit" method="post" commandName="networkform">
+    <sf:form method="post" commandName="networkform">
         <h5>Network details</h5>
         <div class="left">
             <sf:input type="text" placeholder="SSID" path="networkSsid" tabindex="1"/>
@@ -27,7 +27,7 @@
             <span class="error"><sf:errors path="locationName"/></span>
             <sf:input type="text" placeholder="Address" path="locationAddress" tabindex="5"/>
             <span class="error"><sf:errors path="locationAddress"/></span>
-            <sf:input type="number" placeholder="Postal code" path="locationZip" tabindex="7"/>
+            <sf:input type="number" min="1" placeholder="Postal code" path="locationZip" tabindex="7"/>
             <span class="error"><sf:errors path="locationZip"/></span>
             <sf:input type="text" placeholder="Country" path="locationCountry" tabindex="9"/>
             <span class="error"><sf:errors path="locationCountry"/></span>
@@ -39,8 +39,8 @@
             <span class="error"><sf:errors path="locationCity"/></span>
         </div>
         <div class="buttons">
-            <input type="submit" value="Verwijderen" class="btnRemove">
-            <input type="submit" value="Opslaan" class="btnSubmit">
+            <input type="submit" name="remove" value="Verwijderen" class="btnRemove">
+            <input type="submit" name="save" value="Opslaan" class="btnSubmit">
         </div>
     </sf:form>
 </section>

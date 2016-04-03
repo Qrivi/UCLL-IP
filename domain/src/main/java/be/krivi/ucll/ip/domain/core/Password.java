@@ -22,11 +22,6 @@ public class Password extends Entity implements Comparable<Password>{
     @Column( name = "password" )
     private String password;
 
-    @NotNull(message = "{NotNull.Password.timestamp}")
-    @Temporal( TemporalType.TIMESTAMP )
-    @Column( name = "timestamp" )
-    private Date timestamp;
-
     @Min( value = 0, message = "{Min.Passwords.upvotes}")
     @Column( name = "upvotes" )
     private int upvotes;
@@ -37,15 +32,14 @@ public class Password extends Entity implements Comparable<Password>{
 
     public Password(){}
 
-    public Password( String password, Date timestamp, int upvotes, int downvotes ){
+    public Password( String password, int upvotes, int downvotes ){
         this.password = password;
-        this.timestamp = timestamp;
         this.upvotes = upvotes;
         this.downvotes = downvotes;
     }
 
     public Password( String password ){
-        this( password, new Date(), 0, 0 );
+        this( password, 0, 0 );
     }
 
     public void upvote(){
@@ -78,10 +72,6 @@ public class Password extends Entity implements Comparable<Password>{
 
     public String getPassword(){
         return password;
-    }
-
-    public Date getTimestamp(){
-        return timestamp;
     }
 
     @Override

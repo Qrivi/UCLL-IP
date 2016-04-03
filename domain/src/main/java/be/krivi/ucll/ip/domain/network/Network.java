@@ -18,13 +18,13 @@ import java.util.Set;
 @Table( name = "network" )
 @DiscriminatorColumn( name = "type" )
 @Inheritance( strategy = InheritanceType.JOINED )
-public abstract class Network extends Entity{
+public abstract class Network extends Entity implements Comparable<Network>{
 
     @NotNull( message = "{NotNull.Network.ssid}" )
     @Column( name = "ssid" )
     private String ssid;
 
-    @NotNull(message = "{NotNull.Password.timestamp}")
+    @NotNull( message = "{NotNull.Network.timestamp}" )
     @Temporal( TemporalType.TIMESTAMP )
     private Date timestamp;
 
@@ -34,14 +34,15 @@ public abstract class Network extends Entity{
     private Location location;
 
     @Valid
-    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true )
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true )
     private Set<Comment> comments;
 
     public Network(){
     }
 
-    public Network( String ssid, Location location ){
+    public Network( String ssid, Date timestamp, Location location ){
         setSsid( ssid );
+        setTimestamp( timestamp );
         setLocation( location );
 
         comments = new HashSet<>();
@@ -83,5 +84,10 @@ public abstract class Network extends Entity{
 
     public Set<Comment> getComments(){
         return comments;
+    }
+
+    @Override
+    public int compareTo( Network network ){
+        return timestamp.compareTo( network.timestamp );
     }
 }

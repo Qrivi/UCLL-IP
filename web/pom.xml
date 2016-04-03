@@ -14,6 +14,8 @@
         <domain.version>1.0.RELEASE</domain.version>
         <spring.version>4.2.5.RELEASE</spring.version>
         <webapi.version>7.0</webapi.version>
+        <jstl.version>1.2</jstl.version>
+        <google-maps.version>0.1.12</google-maps.version>
 
         <hibernate-core.version>4.3.5.Final</hibernate-core.version>
         <hibernate-c3p0.version>5.0.0.Beta2</hibernate-c3p0.version>
@@ -62,7 +64,13 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <version>${jstl.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.maps</groupId>
+            <artifactId>google-maps-services</artifactId>
+            <version>${google-maps.version}</version>
         </dependency>
     </dependencies>
 

@@ -122,11 +122,15 @@ body > footer a{
     margin : 15px auto;
     width  : 90%;
 }
+#top h1 a{
+    color: inherit;
+    text-decoration: none;
+}
 #top h1{
     font-family : "Slabo 27px", serif;
     font-size   : 1.7em;
 }
-#top a{
+#top > a{
     float      : right;
     border     : solid 2px #ffffff;
     color      : #ffffff;
@@ -135,8 +139,8 @@ body > footer a{
     padding    : 4px 8px 5px;
     transition : color 500ms, background-color 500ms;
 }
-#top a:focus,
-#top a:hover{
+#top > a:focus,
+#top > a:hover{
     color            : #3b4887;
     background-color : #ffffff;
 }

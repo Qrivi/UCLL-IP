@@ -5,7 +5,6 @@ import be.krivi.ucll.ip.domain.exception.DatabaseException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceException;
 
 /**
  * Created by Krivi on 30/03/16.
@@ -30,8 +29,6 @@ public class JPADatabase implements Database{
         try{
             if( entityManagerFactory == null || !entityManagerFactory.isOpen() )
                 entityManagerFactory = Persistence.createEntityManagerFactory( name );
-        }catch( PersistenceException pe ){
-            throw new DatabaseException( "PersistenceException while trying to open database connexion: " + pe.getMessage() + "\n\n" + pe.getStackTrace() );
         }catch( Exception e ){
             throw new DatabaseException( e );
         }
@@ -41,8 +38,6 @@ public class JPADatabase implements Database{
     public void closeConnexion(){
         try{
             entityManagerFactory.close();
-        }catch( PersistenceException pe ){
-            throw new DatabaseException( "PersistenceException while trying to close database connexion: " + pe.getMessage() + "\n\n" + pe.getStackTrace() );
         }catch( Exception e ){
             throw new DatabaseException( e );
         }

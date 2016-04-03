@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,20 +22,20 @@ public class ProtectedNetwork extends Network{
     @Valid
     @Size( min = 1, max = 3, message = "{Size.ProtectedNetwork.passwords}" )
     @NotNull( message = "{NotNull.ProtectedNetwork.passwords}" )
-    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true )
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true )
     private Set<Password> passwords;
 
     public ProtectedNetwork(){
     }
 
-    public ProtectedNetwork( String ssid, Location location, String password ){
-        super( ssid, location );
+    public ProtectedNetwork( String ssid, Date timestamp, Location location, String password ){
+        super( ssid, timestamp, location );
         passwords = new HashSet<>();
         passwords.add( new Password( password ) );
     }
 
-    public ProtectedNetwork( String ssid, Location location, Set passwords ){
-        super( ssid, location );
+    public ProtectedNetwork( String ssid, Date timestamp, Location location, Set<Password> passwords ){
+        super( ssid, timestamp, location );
         this.passwords = passwords;
     }
 
@@ -55,5 +56,14 @@ public class ProtectedNetwork extends Network{
 
     public Set<Password> getPasswords(){
         return passwords;
+    }
+
+    public Password getTopPassword(){
+        return passwords.stream().max( Password::compareTo ).get();
+    }
+
+    public void setPassword( Password password ){
+        passwords.clear();
+        passwords.add( password );
     }
 }

@@ -27,7 +27,7 @@
             <span class="error"><sf:errors path="locationName"/></span>
             <sf:input type="text" placeholder="Address" path="locationAddress" tabindex="5"/>
             <span class="error"><sf:errors path="locationAddress"/></span>
-            <sf:input type="number" placeholder="Postal code" path="locationZip" tabindex="7"/>
+            <sf:input type="number" min="1" placeholder="Postal code" path="locationZip" tabindex="7"/>
             <span class="error"><sf:errors path="locationZip"/></span>
             <sf:input type="text" placeholder="Country" path="locationCountry" tabindex="9"/>
             <span class="error"><sf:errors path="locationCountry"/></span>
