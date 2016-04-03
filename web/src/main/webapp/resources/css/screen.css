@@ -184,7 +184,7 @@ section#cards{
     z-index    : 2;
     width      : 55vw;
     float      : right;
-    overflow-x : hidden;
+    overflow-x : visible;
     overflow-y : auto;
     padding    : 125px 0 0;
 }
@@ -481,6 +481,7 @@ i.fa-close{
     width       : auto !important;
     z-index     : 999;
 }
+a.btnRemove,
 input.btnRemove,
 input.btnSubmit{
     background : transparent;
@@ -498,13 +499,24 @@ input.btnSubmit:hover{
     color            : #3b4887;
     background-color : #ffffff;
 }
+a.btnRemove,
 input.btnRemove{
     border-color : #dd9500;
 }
+a.btnRemove:focus,
+a.btnRemove:hover,
 input.btnRemove:focus,
 input.btnRemove:hover{
     color            : #3b4887;
     background-color : #dd9500;
+}
+a.btnRemove{
+    margin: 2px 0 0;
+    padding: 2px 0 3px;
+    display: inline-block;
+    text-align: center;
+    white-space: pre;
+    align-items: flex-start;
 }
 /* -------------------------------------------- */
 section#passwordform{

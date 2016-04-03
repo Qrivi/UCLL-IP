@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
  */
 public class NetworkForm{
 
+    private Integer networkId;
+
     private String locationName;
 
     @NotEmpty( message = "{NotEmpty.NetworkForm.locationAddress}" )
@@ -31,6 +33,14 @@ public class NetworkForm{
     private String networkPassword;
 
     public NetworkForm(){
+    }
+
+    public Integer getNetworkId(){
+        return networkId;
+    }
+
+    public void setNetworkId( Integer networkId ){
+        this.networkId = networkId;
     }
 
     public String getLocationName(){

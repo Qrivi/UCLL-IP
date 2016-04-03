@@ -53,6 +53,8 @@ public class NetworkController{
         if( network.getType() == NetworkType.PROTECTED ){
             ProtectedNetwork protectedNetwork = (ProtectedNetwork)network;
 
+            networkForm.setNetworkId( protectedNetwork.getId() );
+
             networkForm.setNetworkSsid( protectedNetwork.getSsid() );
             networkForm.setNetworkProtected( true );
             networkForm.setNetworkPassword( protectedNetwork.getTopPassword().getPassword() );
@@ -68,6 +70,8 @@ public class NetworkController{
         }else if( network.getType() == NetworkType.OPEN ){
             OpenNetwork openNetwork = (OpenNetwork)network;
 
+            networkForm.setNetworkId( openNetwork.getId() );
+
             networkForm.setNetworkSsid( openNetwork.getSsid() );
             networkForm.setNetworkProtected( false );
 
@@ -80,18 +84,24 @@ public class NetworkController{
 
             return new ModelAndView( "pages/editnetwork", "networkform", networkForm );
         }else{
-            return new ModelAndView("error");
+            return new ModelAndView( "error" );
         }
     }
 
     @RequestMapping( method = RequestMethod.GET, value = "/edit/{id}/password" )
-    public ModelAndView getEditNetworkPasswords( @PathVariable( "id" ) Integer id){
+    public ModelAndView getEditNetworkPasswords( @PathVariable( "id" ) Integer id ){
         Network network = service.getNetworkById( id );
         PasswordForm passwordForm = new PasswordForm();
         passwordForm.setSsid( network.getSsid() );
         passwordForm.setLocationCity( network.getLocation().getCity() );
 
         return new ModelAndView( "pages/editpasswords", "passwordform", passwordForm );
+    }
+
+    @RequestMapping( method = RequestMethod.GET, value = "/comments/{id}" )
+    public ModelAndView getComments( @PathVariable( "id" ) Integer id ){
+
+        return new ModelAndView( "pages/comments" );
     }
 
     //****************************************************************
@@ -103,7 +113,7 @@ public class NetworkController{
     //****************************************************************
 
     @RequestMapping( method = RequestMethod.POST, value = "/add" )
-    public String postAddNewNetwork( @Valid @ModelAttribute( "networkform" ) NetworkForm networkForm, BindingResult result ){
+    public String postAddNetwork( @Valid @ModelAttribute( "networkform" ) NetworkForm networkForm, BindingResult result ){
         if( networkForm.getNetworkProtected() && networkForm.getNetworkPassword().equals( "" ) )
             result.rejectValue( "networkPassword", "NotEmpty.NetworkForm.networkPassword" );
         if( result.hasErrors() ) return "pages/addnetwork";
@@ -170,25 +180,26 @@ public class NetworkController{
 
         if( network.getType() == NetworkType.PROTECTED && networkForm.getNetworkProtected() ){
             // was protected, blijft protected
-            ProtectedNetwork protectedNetwork = (ProtectedNetwork) network;
+            ProtectedNetwork protectedNetwork = (ProtectedNetwork)network;
 
             protectedNetwork.setSsid( networkForm.getNetworkSsid() );
             protectedNetwork.setPassword( new Password( networkForm.getNetworkPassword() ) );
             protectedNetwork.setLocation( location );
+            protectedNetwork.setTimestamp( new Date() );
 
             service.updateProtectedNetwork( protectedNetwork );
 
         }else if( network.getType() == NetworkType.PROTECTED && !networkForm.getNetworkProtected() ){
             // was protected, nu open
-            service.deleteProtectedNetwork( (ProtectedNetwork) network );
+            service.deleteProtectedNetwork( (ProtectedNetwork)network );
 
-            postAddNewNetwork( networkForm, result );
+            postAddNetwork( networkForm, result );
 
         }else if( network.getType() == NetworkType.OPEN && networkForm.getNetworkProtected() ){
             // was open, nu protected
             service.deleteOpenNetwork( (OpenNetwork)network );
 
-            postAddNewNetwork( networkForm, result );
+            postAddNetwork( networkForm, result );
 
         }else if( network.getType() == NetworkType.OPEN && !networkForm.getNetworkProtected() ){
             // was open, blijft open
@@ -196,6 +207,7 @@ public class NetworkController{
 
             openNetwork.setSsid( networkForm.getNetworkSsid() );
             openNetwork.setLocation( location );
+            openNetwork.setTimestamp( new Date() );
 
             service.updateOpenNetwork( openNetwork );
 
@@ -206,31 +218,51 @@ public class NetworkController{
         return "redirect:/?city=" + networkForm.getLocationCity();
     }
 
+    //TODO make this post or delete
+    // was post maar spring forms wist forms inside springforms om een of andere reden :(
+    @RequestMapping( method = RequestMethod.GET, value = "/remove/{id}" )
+    public String postRemoveNetwork( @PathVariable( "id" ) Integer id ){
+        Network network = service.getNetworkById( id );
+        service.deleteNetwork( network );
+
+        return "redirect:/?city=" + network.getLocation().getCity();
+    }
+
     @RequestMapping( method = RequestMethod.POST, value = "/edit/{id}/password" )
     public String postEditPassword( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "passwordforn" ) PasswordForm passwordForm, BindingResult result ){
         ProtectedNetwork protectedNetwork = service.getProtectedNetworkById( id );
 
         protectedNetwork.addPassword( new Password( passwordForm.getPassword() ) );
+        protectedNetwork.setTimestamp( new Date() );
         service.updateProtectedNetwork( protectedNetwork );
 
         //TODO remove city parameter
         return "redirect:/?city=" + passwordForm.getLocationCity();
     }
 
-    @RequestMapping( method = RequestMethod.POST, value = "/vote/password/{password_id}" )
+    @RequestMapping( method = RequestMethod.POST, value = "/vote/{network_id}/password/{password_id}" )
     public String postVotePassword(
+            @PathVariable( "network_id" ) Integer network_id,
             @PathVariable( "password_id" ) Integer password_id,
             @RequestParam( value = "upvote", required = false ) String upvote,
             @RequestParam( value = "downvote", required = false ) String downvote,
             @RequestParam( value = "city", required = false ) String city ){
 
+        ProtectedNetwork network = service.getProtectedNetworkById( network_id );
         Password password = service.getPasswordById( password_id );
+
+        if( !network.getPasswords().contains( password ) )
+            return "redirect:/error";
 
         if( downvote == null )
             password.upvote();
         else if( upvote == null )
             password.downvote();
 
+        network.setTimestamp( new Date() );
+        network.addPassword( password );
+
+        service.updateNetwork( network );
         service.updatePassword( password );
 
         // TODO remove city parameter

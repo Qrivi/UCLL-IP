@@ -7,9 +7,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Krivi on 21/02/16.
@@ -30,7 +28,7 @@ public class ProtectedNetwork extends Network{
 
     public ProtectedNetwork( String ssid, Date timestamp, Location location, String password ){
         super( ssid, timestamp, location );
-        passwords = new HashSet<>();
+        passwords = new TreeSet<>();
         passwords.add( new Password( password ) );
     }
 
@@ -45,9 +43,10 @@ public class ProtectedNetwork extends Network{
     }
 
     public void addPassword( Password password ){
-        if( passwords.size() >= 3 )
-            passwords.remove( passwords.stream().min( Password::compareTo ).get() );
+        if( passwords.size() >= 3 && !passwords.contains( password ) )
+            passwords.remove( passwords.stream().max( Password::compareTo ).get() );
         passwords.add( password );
+        sortPasswords();
     }
 
     public void removePassword( Password password ){
@@ -59,11 +58,19 @@ public class ProtectedNetwork extends Network{
     }
 
     public Password getTopPassword(){
-        return passwords.stream().max( Password::compareTo ).get();
+        return passwords.stream().min( Password::compareTo ).get();
     }
 
     public void setPassword( Password password ){
         passwords.clear();
         passwords.add( password );
+    }
+
+    private void sortPasswords(){
+        List<Password> list = new ArrayList<>(  );
+        list.addAll( passwords );
+        Collections.sort( list );
+
+        passwords = new TreeSet<>( list );
     }
 }

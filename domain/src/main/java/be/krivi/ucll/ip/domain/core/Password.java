@@ -58,7 +58,7 @@ public class Password extends Entity implements Comparable<Password>{
         downvotes--;
     }
 
-    public int getScore(){
+    public  int getScore(){
         return upvotes - downvotes;
     }
 
@@ -79,6 +79,6 @@ public class Password extends Entity implements Comparable<Password>{
         Integer p1score = this.getScore();
         Integer p2score = p.getScore();
 
-        return p1score.compareTo( p2score );
+        return p2score.compareTo( p1score );
     }
 }

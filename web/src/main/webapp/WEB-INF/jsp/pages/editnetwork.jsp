@@ -39,8 +39,8 @@
             <span class="error"><sf:errors path="locationCity"/></span>
         </div>
         <div class="buttons">
-            <input type="submit" name="remove" value="Verwijderen" class="btnRemove">
-            <input type="submit" name="save" value="Opslaan" class="btnSubmit">
+            <form><a class="btnRemove" href="<c:url value='/remove/${networkform.networkId}'/>">Verwijderen</a></form>
+            <input type="submit" value="Opslaan" class="btnSubmit">
         </div>
     </sf:form>
 </section>
