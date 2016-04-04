@@ -19,7 +19,7 @@
 <section id="networkform">
     <h4><s:message code="lbl.AddANewNetwork"/></h4>
     <i class="fa fa-close"></i>
-    <sf:form action="/add" method="post" commandName="networkform">
+    <sf:form method="post" commandName="networkform">
         <h5><s:message code="lbl.NetworkDetails"/></h5>
         <div class="left">
             <sf:input type="text" placeholder="${plhSsid}" path="networkSsid" tabindex="1"/>

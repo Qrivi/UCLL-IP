@@ -125,7 +125,8 @@ public class NetworkController{
     public String postAddNetwork( @Valid @ModelAttribute( "networkform" ) NetworkForm networkForm, BindingResult result ){
         if( networkForm.getNetworkProtected() && networkForm.getNetworkPassword().equals( "" ) )
             result.rejectValue( "networkPassword", "NotEmpty.NetworkForm.networkPassword" );
-        if( result.hasErrors() ) return "pages/addnetwork";
+        if( result.hasErrors() )
+            return "pages/addnetwork";
 
         Pair<Double, Double> latLon = Converter.getLatLon( networkForm );
 
