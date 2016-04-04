@@ -16,6 +16,7 @@
         <webapi.version>7.0</webapi.version>
         <jstl.version>1.2</jstl.version>
         <google-maps.version>0.1.12</google-maps.version>
+        <tools.version>1.6</tools.version>
 
         <hibernate-core.version>4.3.5.Final</hibernate-core.version>
         <hibernate-c3p0.version>5.0.0.Beta2</hibernate-c3p0.version>
@@ -24,7 +25,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <glassfish.home>/opt/glassfish4</glassfish.home>
-        <toolsjar>${java.home}/../lib/tools.jar</toolsjar>
+        <toolsjar.loc>${java.home}/../lib/tools.jar</toolsjar.loc>
     </properties>
 
     <dependencies>
@@ -32,6 +33,14 @@
             <groupId>be.krivi.ucll.ip</groupId>
             <artifactId>domain</artifactId>
             <version>${domain.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>tools</artifactId>
+            <version>${tools.version}</version>
+            <scope>system</scope>
+            <systemPath>${toolsjar.loc}</systemPath>
         </dependency>
 
         <dependency>
