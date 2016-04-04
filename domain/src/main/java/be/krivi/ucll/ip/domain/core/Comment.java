@@ -1,7 +1,6 @@
 package be.krivi.ucll.ip.domain.core;
 
 import be.krivi.ucll.ip.domain.common.Entity;
-import be.krivi.ucll.ip.domain.exception.DomainException;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Table;
@@ -21,8 +20,8 @@ public class Comment extends Entity{
     public Comment(){
     }
 
-    public Comment( String comment ) throws DomainException{
-        setComment( comment );
+    public Comment( String comment ){
+        this.comment = comment;
     }
 
     public String getComment(){

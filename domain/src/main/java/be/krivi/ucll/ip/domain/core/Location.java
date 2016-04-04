@@ -52,14 +52,14 @@ public class Location extends Entity{
     }
 
     public Location( String name, Double lat, Double lon, String address, String crossStreet, String city, int zip, String country ){
-        setName( name );
-        setLat( lat );
-        setLon( lon );
-        setAddress( address );
-        setCrossStreet( crossStreet );
-        setCity( city );
-        setZip( zip );
-        setCountry( country );
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+        this.address = address;
+        this.crossStreet = crossStreet;
+        this.city = city;
+        this.zip = zip;
+        this.country = country;
     }
 
     public String toString(){

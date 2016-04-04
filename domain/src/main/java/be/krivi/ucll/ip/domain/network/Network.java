@@ -8,8 +8,8 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by Krivi on 8/02/16.
@@ -41,11 +41,11 @@ public abstract class Network extends Entity implements Comparable<Network>{
     }
 
     public Network( String ssid, Date timestamp, Location location ){
-        setSsid( ssid );
-        setTimestamp( timestamp );
-        setLocation( location );
+        this.ssid = ssid;
+        this.timestamp = timestamp;
+        this.location = location;
 
-        comments = new HashSet<>();
+        comments = new TreeSet<>();
     }
 
     public abstract NetworkType getType();

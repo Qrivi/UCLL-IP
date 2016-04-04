@@ -1,5 +1,6 @@
 package be.krivi.ucll.ip.web.controller;
 
+import be.krivi.ucll.ip.domain.core.Comment;
 import be.krivi.ucll.ip.domain.core.Location;
 import be.krivi.ucll.ip.domain.core.Password;
 import be.krivi.ucll.ip.domain.network.Network;
@@ -8,6 +9,7 @@ import be.krivi.ucll.ip.domain.network.OpenNetwork;
 import be.krivi.ucll.ip.domain.network.ProtectedNetwork;
 import be.krivi.ucll.ip.domain.service.NetworkService;
 import be.krivi.ucll.ip.web.converter.Converter;
+import be.krivi.ucll.ip.web.validation.CommentForm;
 import be.krivi.ucll.ip.web.validation.NetworkForm;
 import be.krivi.ucll.ip.web.validation.PasswordForm;
 import com.sun.tools.javac.util.Pair;
@@ -40,12 +42,12 @@ public class NetworkController{
     }
 
     @RequestMapping( method = RequestMethod.GET, value = "/add" )
-    public ModelAndView getAddNewNetwork(){
+    public ModelAndView getAddNetwork(){
         return new ModelAndView( "pages/addnetwork", "networkform", new NetworkForm() );
     }
 
     @RequestMapping( method = RequestMethod.GET, value = "/edit/{id}" )
-    public ModelAndView getEditNewNetwork( @PathVariable( "id" ) Integer id ){
+    public ModelAndView getEditNetwork( @PathVariable( "id" ) Integer id ){
 
         NetworkForm networkForm = new NetworkForm();
         Network network = service.getNetworkById( id );
@@ -100,8 +102,12 @@ public class NetworkController{
 
     @RequestMapping( method = RequestMethod.GET, value = "/comments/{id}" )
     public ModelAndView getComments( @PathVariable( "id" ) Integer id ){
+        Network network = service.getNetworkById( id );
+        CommentForm commentForm = new CommentForm();
+        commentForm.setSsid( network.getSsid() );
+        commentForm.setComments( network.getComments() );
 
-        return new ModelAndView( "pages/comments" );
+        return new ModelAndView( "pages/comments", "commentform", commentForm );
     }
 
     //****************************************************************
@@ -218,7 +224,7 @@ public class NetworkController{
         return "redirect:/?city=" + networkForm.getLocationCity();
     }
 
-    //TODO make this post or delete
+    //TODO change request method to post or delete
     // was post maar spring forms wist forms inside springforms om een of andere reden :(
     @RequestMapping( method = RequestMethod.GET, value = "/remove/{id}" )
     public String postRemoveNetwork( @PathVariable( "id" ) Integer id ){
@@ -229,7 +235,9 @@ public class NetworkController{
     }
 
     @RequestMapping( method = RequestMethod.POST, value = "/edit/{id}/password" )
-    public String postEditPassword( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "passwordforn" ) PasswordForm passwordForm, BindingResult result ){
+    public String postEditPassword( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "passwordform" ) PasswordForm passwordForm, BindingResult result){
+        if( result.hasErrors() ) return "pages/editpasswords";
+
         ProtectedNetwork protectedNetwork = service.getProtectedNetworkById( id );
 
         protectedNetwork.addPassword( new Password( passwordForm.getPassword() ) );
@@ -238,6 +246,18 @@ public class NetworkController{
 
         //TODO remove city parameter
         return "redirect:/?city=" + passwordForm.getLocationCity();
+    }
+
+    @RequestMapping( method = RequestMethod.POST, value = "/comments/{id}" )
+    public String postComment( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "commentform" ) CommentForm commentForm, BindingResult result ){
+        if( result.hasErrors() ) return "pages/comments";
+
+        Network network = service.getNetworkById( id );
+
+        network.addComment( new Comment( commentForm.getMessage() ) );
+        service.updateNetwork( network );
+
+        return "redirect:/comments/" + id;
     }
 
     @RequestMapping( method = RequestMethod.POST, value = "/vote/{network_id}/password/{password_id}" )

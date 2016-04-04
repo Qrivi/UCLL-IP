@@ -20,10 +20,7 @@ public class Entity{
         if( obj == null || id == null )
             return false;
         if( obj instanceof Entity ){
-            if( ( (Entity)obj ).getId() == null )
-                return false;
-            return ( (Entity)obj ).getId()
-                    .equals( this.id );
+            return ( (Entity)obj ).getId() != null && ( (Entity)obj ).getId().equals( this.id );
         }
         return false;
     }

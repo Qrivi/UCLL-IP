@@ -5,32 +5,29 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 /**
  * Created by Krivi on 21/02/16.
  */
 @javax.persistence.Entity
-@Table(name = "password")
+@Table( name = "password" )
 public class Password extends Entity implements Comparable<Password>{
 
-    @NotEmpty(message = "{NotEmpty.Password.password}" )
+    @NotEmpty( message = "{NotEmpty.Password.password}" )
     @Column( name = "password" )
     private String password;
 
-    @Min( value = 0, message = "{Min.Passwords.upvotes}")
+    @Min( value = 0, message = "{Min.Passwords.upvotes}" )
     @Column( name = "upvotes" )
     private int upvotes;
 
-    @Min( value = 0, message = "{Min.Passwords.downvotes}")
+    @Min( value = 0, message = "{Min.Passwords.downvotes}" )
     @Column( name = "downvotes" )
     private int downvotes;
 
-    public Password(){}
+    public Password(){
+    }
 
     public Password( String password, int upvotes, int downvotes ){
         this.password = password;
@@ -58,7 +55,7 @@ public class Password extends Entity implements Comparable<Password>{
         downvotes--;
     }
 
-    public  int getScore(){
+    public Integer getScore(){
         return upvotes - downvotes;
     }
 
@@ -76,9 +73,25 @@ public class Password extends Entity implements Comparable<Password>{
 
     @Override
     public int compareTo( Password p ){
-        Integer p1score = this.getScore();
-        Integer p2score = p.getScore();
+        //TODO why are passwords not sorted in TreeSet in ProtectedNetwork?
+        return this.getScore().compareTo( p.getScore() );
+    }
 
-        return p2score.compareTo( p1score );
+    @Override
+    public boolean equals( Object o ){
+        if( this == o ) return true;
+        if( o == null || getClass() != o.getClass() ) return false;
+        if( !super.equals( o ) ) return false;
+
+        Password password1 = (Password)o;
+
+        return password.equals( password1.password );
+    }
+
+    @Override
+    public int hashCode(){
+        int result = super.hashCode();
+        result = 31 * result + password.hashCode();
+        return result;
     }
 }

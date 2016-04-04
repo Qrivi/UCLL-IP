@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class PasswordForm{
 
-    @NotEmpty( message = "{NotEmpty.PasswordForm.ssid}" )
     private String ssid;
 
     @NotEmpty(message = "{NotEmpty.PasswordForm.password}" )
