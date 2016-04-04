@@ -32,6 +32,9 @@ public class NetworkController{
     @Autowired
     private NetworkService service;
 
+    //TODO implement GET /{city} to filter shown networks by city
+    // postponed for testing purposes
+
     //****************************************************************
     // region RequestMethod.GET
     //****************************************************************
