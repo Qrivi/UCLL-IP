@@ -24,6 +24,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <glassfish.home>/opt/glassfish4</glassfish.home>
+        <toolsjar>${java.home}/../lib/tools.jar</toolsjar>
     </properties>
 
     <dependencies>
