@@ -553,3 +553,27 @@ section#passwordform form{
 #passwordfield.invisible{
     visibility: hidden;
 }
+
+@media screen and (max-width: 620px) {
+    #cards{
+        width: 100vw !important;
+    }
+    #networkform, #comments{
+        height: auto !important;
+        padding-bottom: 20px !important;
+    }
+    section#networkform > *,
+    section#comments > *{
+        width: 90vw;
+    }
+    #networkform .right,
+    #networkform .left{
+        float: none;
+        padding: 0 !important;
+    }
+    #networkform label,
+    #networkform input[type=checkbox]{
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+}
