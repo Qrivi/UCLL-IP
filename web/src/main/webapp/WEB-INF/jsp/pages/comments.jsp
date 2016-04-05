@@ -16,7 +16,7 @@
         <c:when test="${commentform.comments.size() > 0}">
             <ul>
                 <c:forEach var="comment" items="${commentform.comments}">
-                    <li>${comment.comment}</li>
+                    <li><c:out value="${comment.comment}"/></li>
                 </c:forEach>
             </ul>
         </c:when>
