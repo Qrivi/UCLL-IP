@@ -14,21 +14,10 @@
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.url"
                       value="jdbc:mysql://localhost:3306/networks?autoReconnectForPools=true"/>
-            <property name="hibernate.connection.username" value="networks-admin"/>
-            <property name="hibernate.connection.password" value="yaf9k7VkccLPZ47x"/>
+            <property name="hibernate.connection.username" value="*****"/>
+            <property name="hibernate.connection.password" value="*****"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create"/>
-            <property name="hibernate.connection.provider_class"
-                      value="org.hibernate.connection.C3P0ConnectionProvider"/>
-
-            <!-- C3P0 CONNECTION POOLING  -->
-            <property name="hibernate.c3p0.acquire_increment" value="1"/>
-            <property name="hibernate.c3p0.max_size" value="10"/>
-            <property name="hibernate.c3p0.max_statements" value="0"/>
-            <property name="hibernate.c3p0.min_size" value="1"/>
-            <property name="hibernate.c3p0.timeout" value="1000"/>
-            <property name="hibernate.c3p0.idle_test_period" value="100"/>
-            <property name="hibernate.c3p0.testConnectionOnCheckin" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>
