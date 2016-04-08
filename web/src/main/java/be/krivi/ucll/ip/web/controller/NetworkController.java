@@ -32,15 +32,18 @@ public class NetworkController{
     @Autowired
     private NetworkService service;
 
-    //TODO implement GET /{city} to filter shown networks by city
-    // postponed for testing purposes
-
     //****************************************************************
     // region RequestMethod.GET
     //****************************************************************
 
     @RequestMapping( method = RequestMethod.GET )
-    public ModelAndView getIndex(){
+    public ModelAndView getIndex( @RequestParam( value = "city", required = false ) String city ){
+        if( city == null || city.equals( "" ) )
+            return new ModelAndView( "index", "networks", service.getAllNetworks() );
+
+        //TODO implement GET /city={city} to filter shown networks by city
+        // postponed for testing purposes
+        // return new ModelAndView( "index", "networks", service.getAllNetworksFromCity( city ) );
         return new ModelAndView( "index", "networks", service.getAllNetworks() );
     }
 
@@ -239,7 +242,7 @@ public class NetworkController{
     }
 
     @RequestMapping( method = RequestMethod.POST, value = "/edit/{id}/password" )
-    public String postEditPassword( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "passwordform" ) PasswordForm passwordForm, BindingResult result){
+    public String postEditPassword( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "passwordform" ) PasswordForm passwordForm, BindingResult result ){
         if( result.hasErrors() ) return "pages/editpasswords";
 
         ProtectedNetwork protectedNetwork = service.getProtectedNetworkById( id );
