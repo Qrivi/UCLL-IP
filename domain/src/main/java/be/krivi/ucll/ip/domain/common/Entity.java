@@ -11,8 +11,8 @@ public class Entity{
 
     @Id
     @GeneratedValue( strategy = GenerationType.TABLE, generator = "generatorName" )
-    @TableGenerator( name = "generatorName", allocationSize = 1)
-    @Column(name = "id")
+    @TableGenerator( name = "generatorName", allocationSize = 1 )
+    @Column( name = "id" )
     private Integer id;
 
     @Override

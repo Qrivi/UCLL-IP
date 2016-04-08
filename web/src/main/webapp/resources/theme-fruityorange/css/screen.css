@@ -13,510 +13,603 @@ label, legend, table, caption, tbody, tfoot, thead,
 tr, th, td, article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, menu,
 nav, output, ruby, section, summary, time, mark,
-audio, video{
-    margin         : 0;
-    padding        : 0;
-    border         : 0;
-    font-size      : 100%;
-    font           : inherit;
-    vertical-align : baseline;
+audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
+
 article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section{
-    display : block;
+footer, header, hgroup, menu, nav, section {
+    display: block;
 }
-ol, ul{
-    list-style : none;
+
+ol, ul {
+    list-style: none;
 }
-blockquote, q{
-    quotes : none;
+
+blockquote, q {
+    quotes: none;
 }
-blockquote:before, blockquote:after, q:before, q:after{
-    content : "";
-    content : none;
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: "";
+    content: none;
 }
+
 input:focus,
 select:focus,
 textarea:focus,
-button:focus{
-    outline : none;
+button:focus {
+    outline: none;
 }
-table{
-    border-collapse : collapse;
-    border-spacing  : 0;
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
-body{
-    -webkit-text-size-adjust : none;
-    -webkit-font-smoothing   : antialiased;
-    -moz-osx-font-smoothing  : grayscale;
+
+body {
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
+
 /* Box Model */
-html{
-    -moz-box-sizing    : border-box;
-    -webkit-box-sizing : border-box;
-    box-sizing         : border-box;
+html {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
-*, *:before, *:after{
-    -moz-box-sizing    : inherit;
-    -webkit-box-sizing : inherit;
-    box-sizing         : inherit;
+
+*, *:before, *:after {
+    -moz-box-sizing: inherit;
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
 }
+
 /* Standards */
-a{
-    cursor          : pointer;
-    text-decoration : none;
+a {
+    cursor: pointer;
+    text-decoration: none;
 }
-.fa{
-    font-family : "FontAwesome", monospace !important;
+
+.fa {
+    font-family: "FontAwesome", monospace !important;
 }
+
 /* --------------------------------------- */
 /* --------------------------------------- */
 
-noscript{
-    display    : block;
-    width      : 100vw;
-    height     : 100vh;
-    background : #FF5311;
-    color      : #ffffff;
-    text-align : center;
-    padding    : 40vh 40px;
-    z-index    : 9001;
-    position   : fixed;
-    top        : 0;
-    left       : 0;
+noscript {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background: #FF5311;
+    color: #ffffff;
+    text-align: center;
+    padding: 40vh 40px;
+    z-index: 9001;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
-body{
-    width       : 100vw;
-    font-family : "Roboto Condensed", sans-serif;
-    font-size   : 1em;
-    background  : #dedede;
-    color       : #232323;
+
+body {
+    width: 100vw;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 1em;
+    background: #dedede;
+    color: #232323;
 }
-body > header{
-    background : #FF5311;
-    color      : #ffffff;
-    position   : fixed;
-    top        : 0;
-    left       : 0;
-    width      : 100vw;
-    height     : 88px;
-    z-index    : 100;
+
+body > header {
+    background: #FF5311;
+    color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 88px;
+    z-index: 100;
 }
-body > footer{
-    position   : fixed;
-    z-index    : 40;
-    bottom     : 0;
-    left       : 0;
-    width      : 100vw;
-    height     : 25px;
-    padding    : 5px 5% 0;
-    background : #FF5311;
+
+body > footer {
+    position: fixed;
+    z-index: 40;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 25px;
+    padding: 5px 5% 0;
+    background: #FF5311;
 }
-body > footer a{
-    float     : right;
-    color     : #ffffff;
-    font-size : .8em;
-    padding   : 0 0 0 10px;
+
+body > footer a {
+    float: right;
+    color: #ffffff;
+    font-size: .8em;
+    padding: 0 0 0 10px;
 }
-#top{
-    margin : 15px auto;
-    width  : 90%;
+
+#top {
+    margin: 15px auto;
+    width: 90%;
 }
-#top h1 a{
+
+#top h1 a {
     color: inherit;
     text-decoration: none;
 }
-#top h1{
-    font-family : "Slabo 27px", serif;
-    font-size   : 1.7em;
+
+#top h1 {
+    font-family: "Slabo 27px", serif;
+    font-size: 1.7em;
 }
-#top > a{
-    float      : right;
-    border     : solid 2px #ffffff;
-    color      : #ffffff;
-    font-size  : .8em;
-    margin     : -15px 0 0;
-    padding    : 4px 8px 5px;
-    transition : color 500ms, background-color 500ms;
+
+#top > a {
+    float: right;
+    border: solid 2px #ffffff;
+    color: #ffffff;
+    font-size: .8em;
+    margin: -15px 0 0;
+    padding: 4px 8px 5px;
+    transition: color 500ms, background-color 500ms;
 }
+
 #top > a:focus,
-#top > a:hover{
-    color            : #FF5311;
-    background-color : #ffffff;
+#top > a:hover {
+    color: #FF5311;
+    background-color: #ffffff;
 }
-#top form{
-    display       : inline-block;
-    margin        : 0 0 0 15px;
-    border        : none;
-    border-bottom : dashed 1px #9eb3d4;
-    transition    : border-bottom-color 500ms;
+
+#top form {
+    display: inline-block;
+    margin: 0 0 0 15px;
+    border: none;
+    border-bottom: dashed 1px #9eb3d4;
+    transition: border-bottom-color 500ms;
 }
-#top input{
-    background : transparent;
-    border     : none;
-    font       : inherit;
-    color      : inherit;
-    min-width  : 15px;
-    transition : min-width 500ms;
+
+#top input {
+    background: transparent;
+    border: none;
+    font: inherit;
+    color: inherit;
+    min-width: 15px;
+    transition: min-width 500ms;
 }
-#top input#txt_cityName:focus{
-    min-width : 150px;
+
+#top input#txt_cityName:focus {
+    min-width: 150px;
 }
-#top .fa{
-    font-size : .75em;
-    cursor    : pointer;
+
+#top .fa {
+    font-size: .75em;
+    cursor: pointer;
 }
-#top label{
-    cursor : text;
+
+#top label {
+    cursor: text;
 }
-section#map{
-    z-index  : 1;
-    position : fixed !important;
-    top      : 0;
-    left     : 0;
-    width    : 100vw;
-    height   : 100vh;
+
+section#map {
+    z-index: 1;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }
-section#cards{
-    position   : relative;
-    top        : 0;
-    right      : 0;
-    z-index    : 2;
-    width      : 55vw;
-    float      : right;
-    overflow-x : visible;
-    overflow-y : auto;
-    padding    : 125px 0 0;
+
+section#cards {
+    position: relative;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 55vw;
+    float: right;
+    overflow-x: visible;
+    overflow-y: auto;
+    padding: 125px 0 0;
 }
-#cards > article{
-    position   : relative;
-    background : #ffffff;
-    border     : solid 2px #FF5311;
-    display    : inline-block;
-    width      : 300px !important;
-    padding    : 0;
-    overflow   : hidden;
-    margin     : 0 40px 40px 0;
+
+#cards > article {
+    position: relative;
+    background: #ffffff;
+    border: solid 2px #FF5311;
+    display: inline-block;
+    width: 300px !important;
+    padding: 0;
+    overflow: hidden;
+    margin: 0 40px 40px 0;
 }
-#cards > article header p{
-    position          : absolute;
-    top               : 10px;
-    right             : -1px;
-    width             : 125px;
-    height            : 50px;
-    padding           : 0 12px;
-    text-align        : right;
-    clip-path         : polygon(60% 0, 100% 0, 100% 100%, 60% 60%);
-    -webkit-clip-path : polygon(60% 0, 100% 0, 100% 100%, 60% 60%);
-    background        : #FF5311;
-    color             : #ffffff;
-    font-size         : 1.5em;
+
+#cards > article header p {
+    position: absolute;
+    top: 10px;
+    right: -1px;
+    width: 125px;
+    height: 50px;
+    padding: 0 12px;
+    text-align: right;
+    clip-path: polygon(60% 0, 100% 0, 100% 100%, 60% 60%);
+    -webkit-clip-path: polygon(60% 0, 100% 0, 100% 100%, 60% 60%);
+    background: #FF5311;
+    color: #ffffff;
+    font-size: 1.5em;
 }
-#cards > article h2{
-    background-color : #FF5311;
-    color            : #ffffff;
-    font-family      : "Slabo 27px", serif;;
-    font-size        : 1.3em;
-    padding          : 8px 20px;
+
+#cards > article h2 {
+    background-color: #FF5311;
+    color: #ffffff;
+    font-family: "Slabo 27px", serif;
+    font-size: 1.3em;
+    padding: 8px 45px 8px 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-#cards > article h3{
-    text-transform : uppercase;
-    overflow       : visible;
-    white-space    : nowrap;
-    font-size      : .7em;
-    color          : #999999;
-    margin         : 14px 0 7px;
+
+#cards > article h3 {
+    text-transform: uppercase;
+    overflow: visible;
+    white-space: nowrap;
+    font-size: .7em;
+    color: #999999;
+    margin: 14px 0 7px;
 }
-#cards > article h3:after{
-    content    : " ";
-    width      : 90%;
-    height     : 1px;
-    margin     : 0 0 3px 7px;
-    display    : inline-block;
-    background : #bbbbbb;
+
+#cards > article h3:after {
+    content: " ";
+    width: 90%;
+    height: 1px;
+    margin: 0 0 3px 7px;
+    display: inline-block;
+    background: #bbbbbb;
 }
-#cards > article section p a{
-    color : #FF5311;
+
+#cards > article section p a {
+    color: #FF5311;
 }
-#cards > article section p{
-    overflow  : hidden;
-    font-size : .8em;
-    padding   : 0 0 0 10px;
+
+#cards > article section p {
+    overflow: hidden;
+    font-size: .8em;
+    padding: 0 0 0 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-#cards > article .address em{
-    display       : inline-block;
-    margin-bottom : 3px;
-    font-style    : italic;
+
+#cards > article .address em {
+    display: inline-block;
+    margin-bottom: 3px;
+    font-style: italic;
 }
-#cards > article a.edit{
-    display      : none;
-    background   : #ffffff;
-    color        : #999999;
-    position     : absolute;
-    top          : 0;
-    right        : 25px;
-    font-size    : .9em;
-    padding-left : 9px;
-    font-family  : "FontAwesome", monospace;
+
+#cards > article a.edit {
+    display: none;
+    background: #ffffff;
+    color: #999999;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: .9em;
+    padding-left: 9px;
+    font-family: "FontAwesome", monospace;
 }
-#cards > article section{
-    position : relative;
-    padding  : 0 20px;
+
+#cards > article section {
+    position: relative;
+    padding: 0 20px;
 }
-#cards > article section:hover a.edit{
-    display : inline-block;
+
+#cards > article section:hover a.edit {
+    display: inline-block;
 }
-#cards > article li{
-    font-family : "Slabo 27px", serif;
-    font-size   : .9em;
-    padding     : 0 0 0 10px;
+
+#cards > article li {
+    font-family: "Slabo 27px", serif;
+    font-size: .9em;
+    padding: 0 0 0 10px;
 }
-#cards > article li input{
-    background  : transparent;
-    color       : #FF5311;
-    border      : none;
-    font-family : "FontAwesome", monospace;
-    cursor      : pointer;
-    padding     : 0;
-    margin      : 0;
+
+#cards > article li span{
+    display: inline-block;
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-#cards > article li form{
-    color   : #FF5311;
-    float   : right;
-    padding : 0 10px 0 0;
+
+#cards > article li input {
+    background: transparent;
+    color: #FF5311;
+    border: none;
+    font-family: "FontAwesome", monospace;
+    cursor: pointer;
+    padding: 0;
+    margin: 3px 0 0;
+    float: left;
 }
-#cards > article li form span{
-    text-align  : center;
-    width       : 25px;
-    display     : inline-block;
-    font-family : "Roboto Condensed", sans-serif;
-    font-size   : .8em;
+
+#cards > article li form {
+    color: #FF5311;
+    float: right;
+    padding: 0 10px 0 0;
 }
-#cards > article footer{
-    background-color : #FF5311;
-    margin           : 15px 0 0;
+
+#cards > article li form span {
+    text-align: center;
+    width: 25px;
+    display: inline-block;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: .8em;
+    float: left;
 }
-#cards > article footer a{
-    display   : block;
-    color     : #ffffff;
-    font-size : .8em;
-    padding   : 5px 20px;
+
+#cards > article footer {
+    background-color: #FF5311;
+    margin: 15px 0 0;
 }
+
+#cards > article footer a {
+    display: block;
+    color: #ffffff;
+    font-size: .8em;
+    padding: 5px 20px;
+}
+
 /* -------------------------------------------- */
-#cards > article footer i{
-    float     : right;
-    padding   : 3px 7px;
-    font-size : .9em;
+#cards > article footer i {
+    float: right;
+    padding: 3px 7px;
+    font-size: .9em;
 }
-#comments h4{
-    font-family   : "Slabo 27px", serif;
-    font-size     : 1.7em;
-    text-align    : center;
-    color         : #ffffff;
-    margin-bottom : 50px;
+
+#comments h4 {
+    font-family: "Slabo 27px", serif;
+    font-size: 1.7em;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 50px;
 }
-#comments p{
-    color     : #ffffff;
-    padding   : 20px 30px;
-    font-size : 1.1em;
+
+#comments p {
+    color: #ffffff;
+    padding: 20px 30px;
+    font-size: 1.1em;
 }
-#comments li{
-    background : #ffffff;
-    color      : #232323;
-    display    : block;
-    padding    : 15px 30px;
-    margin     : 20px 0;
-    position   : relative;
-    width      : calc(100% - 25px);
+
+#comments li {
+    background: #ffffff;
+    color: #232323;
+    display: block;
+    padding: 15px 30px;
+    margin: 20px 0;
+    position: relative;
+    width: calc(100% - 25px);
 }
-#comments li:after{
-    content           : " ";
-    position          : absolute;
-    bottom            : 0;
-    right             : -25px;
-    width             : 25px;
-    height            : 25px;
-    background        : #ffffff;
-    clip-path         : polygon(0 0, 0% 100%, 100% 100%);
-    -webkit-clip-path : polygon(0 0, 0% 100%, 100% 100%);
+
+#comments li:after {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    right: -25px;
+    width: 25px;
+    height: 25px;
+    background: #ffffff;
+    clip-path: polygon(0 0, 0% 100%, 100% 100%);
+    -webkit-clip-path: polygon(0 0, 0% 100%, 100% 100%);
 }
-#comments input[type=text]{
-    background : #FF5311;
-    border     : solid 2px #ffffff;
-    color      : #ffffff;
-    font       : inherit;
-    display    : block;
-    width      : calc(100% - 25px);
-    padding    : 15px 30px;
+
+#comments input[type=text] {
+    background: #FF5311;
+    border: solid 2px #ffffff;
+    color: #ffffff;
+    font: inherit;
+    display: block;
+    width: calc(100% - 25px);
+    padding: 15px 30px;
 }
+
 #networkform form,
-#comments form{
-    overflow : hidden;
-    position : relative;
+#comments form {
+    overflow: hidden;
+    position: relative;
 }
-#comments input[type=submit]{
-    background  : transparent;
-    border      : none;
-    color       : #ffffff;
-    font-family : "FontAwesome", monospace;
-    position    : absolute;
-    cursor      : pointer;
-    top         : 18px;
-    right       : 0;
-    width       : 25px;
-    height      : 25px;
+
+#comments input[type=submit] {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: "FontAwesome", monospace;
+    position: absolute;
+    cursor: pointer;
+    top: 18px;
+    right: 0;
+    width: 25px;
+    height: 25px;
 }
-#comments ul{
-    overflow-x    : visible;
-    overflow-y    : auto;
-    height        : 60vh;
-    margin-bottom : 20px;
+
+#comments ul {
+    overflow-x: visible;
+    overflow-y: auto;
+    height: 60vh;
+    margin-bottom: 20px;
 }
+
 /* -------------------------------------------- */
-#networkform div{
-    width : 280px;
+#networkform div {
+    width: 280px;
 }
-#networkform .left{
-    float : left;
-    clear : left;
+
+#networkform .left {
+    float: left;
+    clear: left;
 }
-#networkform .right{
-    float : right;
-    clear : right;
+
+#networkform .right {
+    float: right;
+    clear: right;
 }
-#networkform .buttons{
-    text-align : right;
-    float      : right;
-    clear      : both;
+
+#networkform .buttons {
+    text-align: right;
+    float: right;
+    clear: both;
 }
-#networkform .location.right{
-    padding-top : 70px;
+
+#networkform .location.right {
+    padding-top: 70px;
 }
-#networkform h5{
-    text-transform : uppercase;
-    overflow       : visible;
-    white-space    : nowrap;
-    font-size      : .9em;
-    color          : #9eb3d4;
-    clear          : both;
-    margin         : 0 0 -5px;
+
+#networkform h5 {
+    text-transform: uppercase;
+    overflow: visible;
+    white-space: nowrap;
+    font-size: .9em;
+    color: #9eb3d4;
+    clear: both;
+    margin: 0 0 -5px;
 }
-#networkform h5:after{
-    content    : " ";
-    width      : 90%;
-    height     : 1px;
-    display    : inline-block;
-    background : #9eb3d4;
-    margin     : 0 0 4px 2px;
+
+#networkform h5:after {
+    content: " ";
+    width: 90%;
+    height: 1px;
+    display: inline-block;
+    background: #9eb3d4;
+    margin: 0 0 4px 2px;
 }
+
 #passwordform input[type=text],
 #networkform input[type=text],
-#networkform input[type=number]{
-    margin     : 25px auto 0;
-    background : #FF5311;
-    border     : solid 2px #ffffff;
-    color      : #ffffff;
-    font       : inherit;
-    display    : block;
-    width      : 95%;
-    padding    : 10px 30px;
+#networkform input[type=number] {
+    margin: 25px auto 0;
+    background: #FF5311;
+    border: solid 2px #ffffff;
+    color: #ffffff;
+    font: inherit;
+    display: block;
+    width: 95%;
+    padding: 10px 30px;
 }
-#networkform input[type=checkbox]{
-    margin : 25px 10px;
+
+#networkform input[type=checkbox] {
+    margin: 25px 10px;
 }
-#networkform label{
-    color       : #ffffff;
-    padding-top : 2px;
+
+#networkform label {
+    color: #ffffff;
+    padding-top: 2px;
 }
+
 /* -------------------------------------------- */
 section#networkform,
-section#comments{
-    position         : absolute;
-    top              : 0;
-    right            : 0;
-    width            : 80vw;
-    height           : 100vh;
-    background-color : #FF5311;
-    padding          : 100px 20px 10px;
+section#comments {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80vw;
+    height: 100vh;
+    background-color: #FF5311;
+    padding: 100px 20px 10px;
 }
-main > section:first-child{
-    width : 100vw !important;
+
+main > section:first-child {
+    width: 100vw !important;
 }
+
 section#networkform > *,
-section#comments > *{
-    margin  : 0 auto;
-    width   : 600px;
-    display : block;
+section#comments > * {
+    margin: 0 auto;
+    width: 600px;
+    display: block;
 }
+
 #passwordform h4,
 #networkform h4,
-#comments h4{
-    font-family   : "Slabo 27px", serif;
-    font-size     : 1.7em;
-    text-align    : center;
-    color         : #ffffff;
-    margin-bottom : 50px;
+#comments h4 {
+    font-family: "Slabo 27px", serif;
+    font-size: 1.7em;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 50px;
 }
-section#comments{
-    z-index : 4;
+
+section#comments {
+    z-index: 4;
 }
-section#networkform{
-    z-index : 5;
+
+section#networkform {
+    z-index: 5;
 }
-span.error{
-    color     : #FF0019;
-    font-size : .9em;
-    display   : block;
-    height    : 19px;
-    min-width : 1px;
-    float     : right;
+
+span.error {
+    color: #FF0019;
+    font-size: .9em;
+    display: block;
+    height: 19px;
+    min-width: 1px;
+    float: right;
 }
-#passwordform i.fa-close{
-    top : 0 !important;
+
+#passwordform i.fa-close {
+    top: 0 !important;
 }
-i.fa-close{
-    position    : absolute;
-    top         : 100px;
-    left        : -50px;
-    font-family : "FontAwesome", monospace !important;
-    font-size   : 2.5em;
-    display     : inline-block !important;
-    margin      : 0 !important;
-    cursor      : pointer;
-    color       : #FF5311;
-    width       : auto !important;
-    z-index     : 999;
+
+i.fa-close {
+    position: absolute;
+    top: 100px;
+    left: -50px;
+    font-family: "FontAwesome", monospace !important;
+    font-size: 2.5em;
+    display: inline-block !important;
+    margin: 0 !important;
+    cursor: pointer;
+    color: #FF5311;
+    width: auto !important;
+    z-index: 999;
 }
+
 a.btnRemove,
 input.btnRemove,
-input.btnSubmit{
-    background : transparent;
-    border     : solid 2px #ffffff;
-    font       : inherit;
-    color      : #ffffff;
-    width      : 80px;
-    margin     : 0 5px;
-    cursor     : pointer;
-    font-size  : .9em;
-    transition : color 500ms, background-color 500ms;
+input.btnSubmit {
+    background: transparent;
+    border: solid 2px #ffffff;
+    font: inherit;
+    color: #ffffff;
+    width: 80px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: .9em;
+    transition: color 500ms, background-color 500ms;
 }
+
 input.btnSubmit:focus,
-input.btnSubmit:hover{
-    color            : #FF5311;
-    background-color : #ffffff;
+input.btnSubmit:hover {
+    color: #FF5311;
+    background-color: #ffffff;
 }
+
 a.btnRemove,
-input.btnRemove{
-    border-color : #dd9500;
+input.btnRemove {
+    border-color: #dd9500;
 }
+
 a.btnRemove:focus,
 a.btnRemove:hover,
 input.btnRemove:focus,
-input.btnRemove:hover{
-    color            : #FF5311;
-    background-color : #dd9500;
+input.btnRemove:hover {
+    color: #FF5311;
+    background-color: #dd9500;
 }
-a.btnRemove{
+
+a.btnRemove {
     margin: 2px 0 0;
     padding: 2px 0 3px;
     display: inline-block;
@@ -524,55 +617,64 @@ a.btnRemove{
     white-space: pre;
     align-items: flex-start;
 }
+
 /* -------------------------------------------- */
-section#passwordform{
-    z-index          : 2;
-    position         : fixed;
-    top              : 0;
-    left             : 0;
-    width            : 100vw;
-    height           : 100vh;
-    background-color : rgba(255, 255, 255, .5)
+section#passwordform {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, .5)
 }
-section#passwordform form{
-    position         : relative;
-    top              : 40vh;
-    left             : 50vw;
-    margin-left      : -200px;
-    width            : 400px;
-    padding          : 30px;
-    background-color : #FF5311;
+
+section#passwordform form {
+    position: relative;
+    top: 40vh;
+    left: 50vw;
+    margin-left: -200px;
+    width: 400px;
+    padding: 30px;
+    background-color: #FF5311;
 }
-#passwordform h4{
-    margin-bottom : 20px;
+
+#passwordform h4 {
+    margin-bottom: 20px;
 }
-#passwordform div{
-    text-align : right;
-    padding    : 30px 20px 0;
+
+#passwordform div {
+    text-align: right;
+    padding: 30px 20px 0;
 }
-#passwordfield.invisible{
+
+#passwordfield.invisible {
     visibility: hidden;
 }
 
 @media screen and (max-width: 620px) {
-    #cards{
+    #cards {
         width: 100vw !important;
     }
-    #networkform, #comments{
+
+    #networkform, #comments {
         height: auto !important;
         padding-bottom: 20px !important;
     }
+
     section#networkform > *,
-    section#comments > *{
+    section#comments > * {
         width: 90vw;
     }
+
     #networkform .right,
-    #networkform .left{
+    #networkform .left {
         float: none;
         padding: 0 !important;
     }
+
     #networkform label,
-    #networkform input[type=checkbox]{
+    #networkform input[type=checkbox] {
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
     }

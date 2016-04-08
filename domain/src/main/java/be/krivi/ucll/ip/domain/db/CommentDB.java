@@ -7,5 +7,5 @@ import be.krivi.ucll.ip.domain.core.Comment;
 /**
  * Created by Krivi on 21/02/16.
  */
-public interface CommentDB extends Database, CRUD<Comment, Integer> {
+public interface CommentDB extends Database, CRUD<Comment, Integer>{
 }

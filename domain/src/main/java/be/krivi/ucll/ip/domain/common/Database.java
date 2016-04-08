@@ -6,5 +6,6 @@ package be.krivi.ucll.ip.domain.common;
 public interface Database{
 
     void openConnexion();
+
     void closeConnexion();
 }

@@ -7,6 +7,7 @@ import be.krivi.ucll.ip.domain.core.Location;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
@@ -20,7 +21,7 @@ import java.util.TreeSet;
 @Inheritance( strategy = InheritanceType.JOINED )
 public abstract class Network extends Entity implements Comparable<Network>{
 
-    @NotNull( message = "{NotNull.Network.ssid}" )
+    @Size( min = 1, max = 32, message = "{Size.Network.ssid}" )
     @Column( name = "ssid" )
     private String ssid;
 

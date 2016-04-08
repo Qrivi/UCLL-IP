@@ -1,7 +1,7 @@
 package be.krivi.ucll.ip.domain.core;
 
 import be.krivi.ucll.ip.domain.common.Entity;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @Table( name = "comment" )
 public class Comment extends Entity{
 
-    @NotEmpty( message = "{NotEmpty.Comment.comment}" )
+    @NotBlank( message = "{NotBlank.Comment.comment}" )
     @Size( min = 2, max = 140, message = "{Size.Comment.comment}" )
     private String comment;
 

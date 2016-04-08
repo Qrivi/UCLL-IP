@@ -1,6 +1,6 @@
 package be.krivi.ucll.ip.web.validation;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * Created by Krivi on 01/04/16.
@@ -9,7 +9,7 @@ public class PasswordForm{
 
     private String ssid;
 
-    @NotEmpty(message = "{NotEmpty.PasswordForm.password}" )
+    @NotBlank( message = "{NotBlank.PasswordForm.password}" )
     private String password;
 
     //TODO remove city propery

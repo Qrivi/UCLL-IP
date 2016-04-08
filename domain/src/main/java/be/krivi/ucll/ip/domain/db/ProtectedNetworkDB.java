@@ -7,5 +7,5 @@ import be.krivi.ucll.ip.domain.network.ProtectedNetwork;
 /**
  * Created by Krivi on 21/02/16.
  */
-public interface ProtectedNetworkDB extends Database, CRUD<ProtectedNetwork, Integer> {
+public interface ProtectedNetworkDB extends Database, CRUD<ProtectedNetwork, Integer>{
 }

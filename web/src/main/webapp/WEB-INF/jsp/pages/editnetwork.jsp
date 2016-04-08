@@ -49,7 +49,8 @@
             <span class="error"><sf:errors path="locationCity"/></span>
         </div>
         <div class="buttons">
-            <a class="btnRemove" href="<c:url value='/remove/${networkform.networkId}'/>"><s:message code="btn.Remove"/></a>
+            <a class="btnRemove" href="<c:url value='/remove/${networkform.networkId}'/>"><s:message
+                    code="btn.Remove"/></a>
             <input type="submit" value="<s:message code="btn.Save"/>" class="btnSubmit">
         </div>
     </sf:form>

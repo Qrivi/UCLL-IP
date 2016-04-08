@@ -9,22 +9,22 @@ import java.util.Map;
 
 public abstract class MapDB<E extends Entity> implements Database{
 
-    private int index;
     protected Map<Integer, E> map;
+    private int index;
 
-    public MapDB() {
+    public MapDB(){
         this.index = 0;
         this.map = new HashMap<>();
     }
 
-    protected int generateId()
-    {
-        return (index++);
+    protected int generateId(){
+        return ( index++ );
     }
 
     public void openConnexion(){
         this.map = new HashMap<>();
     }
+
     public void closeConnexion(){
         this.map.clear();
     }

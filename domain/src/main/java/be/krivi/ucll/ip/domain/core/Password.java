@@ -1,7 +1,7 @@
 package be.krivi.ucll.ip.domain.core;
 
 import be.krivi.ucll.ip.domain.common.Entity;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -14,7 +14,7 @@ import javax.validation.constraints.Min;
 @Table( name = "password" )
 public class Password extends Entity implements Comparable<Password>{
 
-    @NotEmpty( message = "{NotEmpty.Password.password}" )
+    @NotBlank( message = "{NotBlank.Password.password}" )
     @Column( name = "password" )
     private String password;
 

@@ -1,8 +1,9 @@
 package be.krivi.ucll.ip.web.validation;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by Krivi on 01/04/16.
@@ -13,20 +14,20 @@ public class NetworkForm{
 
     private String locationName;
 
-    @NotEmpty( message = "{NotEmpty.NetworkForm.locationAddress}" )
+    @NotBlank( message = "{NotBlank.NetworkForm.locationAddress}" )
     private String locationAddress;
     private String locationCrossStreet;
 
     @NotNull( message = "{NotNull.NetworkForm.locationZip}" )
     private Integer locationZip;
 
-    @NotEmpty( message = "{NotEmpty.NetworkForm.locationCity}" )
+    @NotBlank( message = "{NotBlank.NetworkForm.locationCity}" )
     private String locationCity;
 
-    @NotEmpty( message = "{NotEmpty.NetworkForm.locationCountry}" )
+    @NotBlank( message = "{NotBlank.NetworkForm.locationCountry}" )
     private String locationCountry;
 
-    @NotEmpty( message = "{NotEmpty.NetworkForm.networkSsid}" )
+    @Size( min = 1, max = 32, message = "{Size.NetworkForm.networkSsid}" )
     private String networkSsid;
 
     private Boolean networkProtected;
@@ -71,6 +72,10 @@ public class NetworkForm{
         return locationZip;
     }
 
+    public void setLocationZip( String locationZip ){
+        setLocationZip( Integer.parseInt( locationZip ) );
+    }
+
     public void setLocationZip( Integer locationZip ){
         this.locationZip = locationZip;
     }
@@ -111,17 +116,13 @@ public class NetworkForm{
         return networkProtected;
     }
 
-    public void setNetworkProtected( Boolean networkProtected ){
-        this.networkProtected = networkProtected;
-    }
-
     // Spring Forms setters
-
-    public void setLocationZip( String locationZip ){
-        setLocationZip( Integer.parseInt( locationZip ) );
-    }
 
     public void setNetworkProtected( String networkProtected ){
         setNetworkProtected( Boolean.valueOf( networkProtected ) );
+    }
+
+    public void setNetworkProtected( Boolean networkProtected ){
+        this.networkProtected = networkProtected;
     }
 }

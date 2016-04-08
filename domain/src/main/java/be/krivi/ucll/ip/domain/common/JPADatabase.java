@@ -11,8 +11,8 @@ import javax.persistence.Persistence;
  */
 public class JPADatabase implements Database{
 
-    private final String name;
     protected static EntityManagerFactory entityManagerFactory;
+    private final String name;
 
     public JPADatabase( String name ){
         this.name = name;

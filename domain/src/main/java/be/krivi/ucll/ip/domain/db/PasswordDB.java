@@ -7,5 +7,5 @@ import be.krivi.ucll.ip.domain.core.Password;
 /**
  * Created by Krivi on 21/02/16.
  */
-public interface PasswordDB extends Database, CRUD<Password, Integer> {
+public interface PasswordDB extends Database, CRUD<Password, Integer>{
 }

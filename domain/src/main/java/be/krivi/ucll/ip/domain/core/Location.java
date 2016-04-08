@@ -1,7 +1,7 @@
 package be.krivi.ucll.ip.domain.core;
 
 import be.krivi.ucll.ip.domain.common.Entity;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -29,22 +29,22 @@ public class Location extends Entity{
     @Column( name = "lon" )
     private Double lon;
 
-    @NotEmpty( message = "NotEmpty.Location.address" )
+    @NotBlank( message = "{NotBlank.Location.address}" )
     @Column( name = "address" )
     private String address;
 
     @Column( name = "crossstreet" )
     private String crossStreet;
 
-    @NotEmpty( message = "NotEmpty.Location.city" )
+    @NotBlank( message = "{NotBlank.Location.city}" )
     @Column( name = "city" )
     private String city;
 
-    @NotNull( message = "NotNull.Location.zip" )
+    @NotNull( message = "{NotNull.Location.zip}" )
     @Column( name = "zip" )
     private int zip;
 
-    @NotEmpty( message = "NotEmpty.Location.country" )
+    @NotBlank( message = "{NotBlank.Location.country}" )
     @Column( name = "country" )
     private String country;
 

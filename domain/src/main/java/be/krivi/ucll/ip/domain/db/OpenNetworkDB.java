@@ -7,5 +7,5 @@ import be.krivi.ucll.ip.domain.network.OpenNetwork;
 /**
  * Created by Krivi on 21/02/16.
  */
-public interface OpenNetworkDB extends Database, CRUD<OpenNetwork, Integer> {
+public interface OpenNetworkDB extends Database, CRUD<OpenNetwork, Integer>{
 }

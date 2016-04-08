@@ -7,5 +7,5 @@ import be.krivi.ucll.ip.domain.core.Location;
 /**
  * Created by Krivi on 21/02/16.
  */
-public interface LocationDB extends Database, CRUD<Location, Integer> {
+public interface LocationDB extends Database, CRUD<Location, Integer>{
 }
