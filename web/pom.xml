@@ -11,21 +11,29 @@
     <packaging>war</packaging>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <java.version>1.8</java.version>
+        <tools.version>1.6</tools.version>
+
+        <glassfish.home>/opt/glassfish4</glassfish.home>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <toolsjar.loc>${java.home}/../lib/tools.jar</toolsjar.loc>
+
         <domain.version>1.0.RELEASE</domain.version>
         <spring.version>4.2.5.RELEASE</spring.version>
-        <webapi.version>7.0</webapi.version>
+
+        <javax.version>7.0</javax.version>
         <jstl.version>1.2</jstl.version>
         <google-maps.version>0.1.12</google-maps.version>
-        <tools.version>1.6</tools.version>
 
         <hibernate-core.version>4.3.5.Final</hibernate-core.version>
         <hibernate-c3p0.version>5.0.0.Beta2</hibernate-c3p0.version>
 
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <glassfish.home>/opt/glassfish4</glassfish.home>
-        <toolsjar.loc>${java.home}/../lib/tools.jar</toolsjar.loc>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <maven-war-plugin.version>2.3</maven-war-plugin.version>
+        <maven-dependency-plugin.version>2.6</maven-dependency-plugin.version>
+        <maven-glassfish-plugin.version>2.1</maven-glassfish-plugin.version>
     </properties>
 
     <dependencies>
@@ -46,7 +54,7 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
-            <version>${webapi.version}</version>
+            <version>${javax.version}</version>
         </dependency>
 
         <dependency>
@@ -89,10 +97,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
@@ -102,7 +110,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
+                <version>${maven-war-plugin.version}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
@@ -111,7 +119,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.6</version>
+                <version>${maven-dependency-plugin.version}</version>
                 <executions>
                     <execution>
                         <phase>validate</phase>
@@ -125,7 +133,7 @@
                                 <artifactItem>
                                     <groupId>javax</groupId>
                                     <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>7.0</version>
+                                    <version>${javax.version}</version>
                                     <type>jar</type>
                                 </artifactItem>
                             </artifactItems>
@@ -137,7 +145,7 @@
             <plugin>
                 <groupId>org.glassfish.maven.plugin</groupId>
                 <artifactId>maven-glassfish-plugin</artifactId>
-                <version>2.1</version>
+                <version>${maven-glassfish-plugin.version}</version>
                 <configuration>
                     <glassfishDirectory>${glassfish.home}/glassfish</glassfishDirectory>
                     <user>admin</user>
@@ -147,13 +155,15 @@
                     <echo>true</echo>
                     <domain>
                         <name>domain1</name>
+                        <host>localhost</host>
                         <adminPort>4848</adminPort>
                         <httpPort>8080</httpPort>
                     </domain>
                     <components>
                         <component>
                             <name>${project.artifactId}</name>
-                            <artifact>target/${project.build.finalName}.war</artifact>
+                            <artifact>target/${project.artifactId}.war</artifact>
+                            <!--artifact>target/${project.build.finalName}.war</artifact-->
                         </component>
                     </components>
                 </configuration>
