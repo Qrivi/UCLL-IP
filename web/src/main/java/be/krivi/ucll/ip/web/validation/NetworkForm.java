@@ -27,6 +27,7 @@ public class NetworkForm{
     @NotBlank( message = "{NotBlank.NetworkForm.locationCountry}" )
     private String locationCountry;
 
+    @NotBlank( message = "{NotBlank.NetworkForm.networkSsid}" )
     @Size( min = 1, max = 32, message = "{Size.NetworkForm.networkSsid}" )
     private String networkSsid;
 

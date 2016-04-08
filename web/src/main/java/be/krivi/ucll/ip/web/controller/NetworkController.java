@@ -126,7 +126,7 @@ public class NetworkController{
 
     @RequestMapping( method = RequestMethod.POST, value = "/add" )
     public String postAddNetwork( @Valid @ModelAttribute( "networkform" ) NetworkForm networkForm, BindingResult result ){
-        if( networkForm.getNetworkProtected() && networkForm.getNetworkPassword().equals( "" ) )
+        if( networkForm.getNetworkProtected() && networkForm.getNetworkPassword().trim().equals( "" ) )
             result.rejectValue( "networkPassword", "NotBlank.NetworkForm.networkPassword" );
         if( result.hasErrors() )
             return "pages/addnetwork";
@@ -174,7 +174,7 @@ public class NetworkController{
 
     @RequestMapping( method = RequestMethod.POST, value = "/edit/{id}" )
     public String postSaveNetwork( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "networkform" ) NetworkForm networkForm, BindingResult result ){
-        if( networkForm.getNetworkProtected() && networkForm.getNetworkPassword().equals( "" ) )
+        if( networkForm.getNetworkProtected() && networkForm.getNetworkPassword().trim().equals( "" ) )
             result.rejectValue( "networkPassword", "NotBlank.NetworkForm.networkPassword" );
         if( result.hasErrors() ) return "pages/editnetwork";
 
