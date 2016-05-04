@@ -26,6 +26,7 @@
         <javax.version>7.0</javax.version>
         <jstl.version>1.2</jstl.version>
         <google-maps.version>0.1.12</google-maps.version>
+        <jackson-databind.version>2.7.4</jackson-databind.version>
 
         <hibernate-core.version>4.3.5.Final</hibernate-core.version>
         <hibernate-c3p0.version>5.0.0.Beta2</hibernate-c3p0.version>
@@ -89,6 +90,12 @@
             <groupId>com.google.maps</groupId>
             <artifactId>google-maps-services</artifactId>
             <version>${google-maps.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
         </dependency>
     </dependencies>
 

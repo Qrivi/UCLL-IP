@@ -8,7 +8,8 @@ import be.krivi.ucll.ip.domain.network.NetworkType;
 import be.krivi.ucll.ip.domain.network.OpenNetwork;
 import be.krivi.ucll.ip.domain.network.ProtectedNetwork;
 import be.krivi.ucll.ip.domain.service.NetworkService;
-import be.krivi.ucll.ip.web.converter.Converter;
+import be.krivi.ucll.ip.web.rest.converter.Converter;
+import be.krivi.ucll.ip.web.rest.model.Results;
 import be.krivi.ucll.ip.web.validation.CommentForm;
 import be.krivi.ucll.ip.web.validation.NetworkForm;
 import be.krivi.ucll.ip.web.validation.PasswordForm;
@@ -131,7 +132,7 @@ public class NetworkController{
         if( result.hasErrors() )
             return "pages/addnetwork";
 
-        Pair<Double, Double> latLon = Converter.getLatLon( networkForm );
+        Pair<Double, Double> latLon = Converter.getLatLonJson( networkForm );
 
         if( networkForm.getNetworkProtected() ){
             service.addProtectedNetwork(
@@ -179,7 +180,7 @@ public class NetworkController{
         if( result.hasErrors() ) return "pages/editnetwork";
 
         Network network = service.getNetworkById( id );
-        Pair<Double, Double> latLon = Converter.getLatLon( networkForm );
+        Pair<Double, Double> latLon = Converter.getLatLonJson( networkForm );
         Location location = new Location(
                 networkForm.getLocationName(),
                 latLon.fst,

@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <mvc:annotation-driven/>
-    <mvc:resources mapping="/resources/**" location="/resources/theme-fruityorange/"/>
+    <mvc:resources mapping="/resources/**" location="/resources/theme-sweetblue/"/>
     <context:component-scan base-package="be.krivi.ucll.ip.web.controller"/>
 
     <bean id="viewResolver"
