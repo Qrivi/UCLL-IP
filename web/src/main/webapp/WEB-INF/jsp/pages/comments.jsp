@@ -10,13 +10,18 @@
 </jsp:include>
 
 <section id="comments">
-    <h4><s:message code="lbl.CommentsOnArg" arguments="${commentform.ssid}"/></h4>
+    <h4><s:message code="lbl.CommentsOnArg" arguments="${network.ssid}"/></h4>
     <i class="fa fa-close"></i>
     <c:choose>
-        <c:when test="${commentform.comments.size() > 0}">
+        <c:when test="${network.comments.size() > 0}">
             <ul>
-                <c:forEach var="comment" items="${commentform.comments}">
-                    <li><c:out value="${comment.comment}"/></li>
+                <c:forEach var="item" items="${network.comments}">
+                    <li>
+                        <c:out value="${item.comment}"/>
+                        <span class="timestamp">
+                            <c:out value="${item.timestamp}"/>
+                        </span>
+                    </li>
                 </c:forEach>
             </ul>
         </c:when>
@@ -26,7 +31,6 @@
     </c:choose>
     <sf:form method="post" commandName="commentform">
         <sf:input placeholder="${plhAddComment}" maxlength="140" path="message" tabindex="1"/>
-        <sf:hidden path="ssid"/>
         <input type="submit" value="&#xf1d9;" class="fa">
         <span class="error"><sf:errors path="message"/></span>
     </sf:form>

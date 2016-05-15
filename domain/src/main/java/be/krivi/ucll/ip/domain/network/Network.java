@@ -9,9 +9,11 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 /**
  * Created by Krivi on 8/02/16.
@@ -86,7 +88,7 @@ public abstract class Network extends Entity implements Comparable<Network>{
     }
 
     public Set<Comment> getComments(){
-        return comments;
+        return comments.stream().sorted( ( o1, o2 ) -> o1.compareTo(o2) ).collect( Collectors.toSet());
     }
 
     @Override

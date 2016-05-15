@@ -1,6 +1,5 @@
 package be.krivi.ucll.ip.web.controller;
 
-import be.krivi.ucll.ip.domain.core.Comment;
 import be.krivi.ucll.ip.domain.core.Location;
 import be.krivi.ucll.ip.domain.core.Password;
 import be.krivi.ucll.ip.domain.network.Network;
@@ -9,10 +8,8 @@ import be.krivi.ucll.ip.domain.network.OpenNetwork;
 import be.krivi.ucll.ip.domain.network.ProtectedNetwork;
 import be.krivi.ucll.ip.domain.service.NetworkService;
 import be.krivi.ucll.ip.web.rest.converter.Converter;
-import be.krivi.ucll.ip.web.rest.model.Results;
-import be.krivi.ucll.ip.web.validation.CommentForm;
-import be.krivi.ucll.ip.web.validation.NetworkForm;
-import be.krivi.ucll.ip.web.validation.PasswordForm;
+import be.krivi.ucll.ip.web.validation.NetworkTO;
+import be.krivi.ucll.ip.web.validation.PasswordTO;
 import com.sun.tools.javac.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,48 +47,48 @@ public class NetworkController{
 
     @RequestMapping( method = RequestMethod.GET, value = "/add" )
     public ModelAndView getAddNetwork(){
-        return new ModelAndView( "pages/addnetwork", "networkform", new NetworkForm() );
+        return new ModelAndView( "pages/addnetwork", "networkform", new NetworkTO() );
     }
 
     @RequestMapping( method = RequestMethod.GET, value = "/edit/{id}" )
     public ModelAndView getEditNetwork( @PathVariable( "id" ) Integer id ){
 
-        NetworkForm networkForm = new NetworkForm();
+        NetworkTO networkTO = new NetworkTO();
         Network network = service.getNetworkById( id );
 
         if( network.getType() == NetworkType.PROTECTED ){
             ProtectedNetwork protectedNetwork = (ProtectedNetwork)network;
 
-            networkForm.setNetworkId( protectedNetwork.getId() );
+            networkTO.setNetworkId( protectedNetwork.getId() );
 
-            networkForm.setNetworkSsid( protectedNetwork.getSsid() );
-            networkForm.setNetworkProtected( true );
-            networkForm.setNetworkPassword( protectedNetwork.getTopPassword().getPassword() );
+            networkTO.setNetworkSsid( protectedNetwork.getSsid() );
+            networkTO.setNetworkProtected( true );
+            networkTO.setNetworkPassword( protectedNetwork.getTopPassword().getPassword() );
 
-            networkForm.setLocationName( protectedNetwork.getLocation().getName() );
-            networkForm.setLocationAddress( protectedNetwork.getLocation().getAddress() );
-            networkForm.setLocationCrossStreet( protectedNetwork.getLocation().getCrossStreet() );
-            networkForm.setLocationZip( protectedNetwork.getLocation().getZip() );
-            networkForm.setLocationCity( protectedNetwork.getLocation().getCity() );
-            networkForm.setLocationCountry( protectedNetwork.getLocation().getCountry() );
+            networkTO.setLocationName( protectedNetwork.getLocation().getName() );
+            networkTO.setLocationAddress( protectedNetwork.getLocation().getAddress() );
+            networkTO.setLocationCrossStreet( protectedNetwork.getLocation().getCrossStreet() );
+            networkTO.setLocationZip( protectedNetwork.getLocation().getZip() );
+            networkTO.setLocationCity( protectedNetwork.getLocation().getCity() );
+            networkTO.setLocationCountry( protectedNetwork.getLocation().getCountry() );
 
-            return new ModelAndView( "pages/editnetwork", "networkform", networkForm );
+            return new ModelAndView( "pages/editnetwork", "networkform", networkTO );
         }else if( network.getType() == NetworkType.OPEN ){
             OpenNetwork openNetwork = (OpenNetwork)network;
 
-            networkForm.setNetworkId( openNetwork.getId() );
+            networkTO.setNetworkId( openNetwork.getId() );
 
-            networkForm.setNetworkSsid( openNetwork.getSsid() );
-            networkForm.setNetworkProtected( false );
+            networkTO.setNetworkSsid( openNetwork.getSsid() );
+            networkTO.setNetworkProtected( false );
 
-            networkForm.setLocationName( openNetwork.getLocation().getName() );
-            networkForm.setLocationAddress( openNetwork.getLocation().getAddress() );
-            networkForm.setLocationCrossStreet( openNetwork.getLocation().getCrossStreet() );
-            networkForm.setLocationZip( openNetwork.getLocation().getZip() );
-            networkForm.setLocationCity( openNetwork.getLocation().getCity() );
-            networkForm.setLocationCountry( openNetwork.getLocation().getCountry() );
+            networkTO.setLocationName( openNetwork.getLocation().getName() );
+            networkTO.setLocationAddress( openNetwork.getLocation().getAddress() );
+            networkTO.setLocationCrossStreet( openNetwork.getLocation().getCrossStreet() );
+            networkTO.setLocationZip( openNetwork.getLocation().getZip() );
+            networkTO.setLocationCity( openNetwork.getLocation().getCity() );
+            networkTO.setLocationCountry( openNetwork.getLocation().getCountry() );
 
-            return new ModelAndView( "pages/editnetwork", "networkform", networkForm );
+            return new ModelAndView( "pages/editnetwork", "networkform", networkTO );
         }else{
             return new ModelAndView( "error" );
         }
@@ -100,21 +97,11 @@ public class NetworkController{
     @RequestMapping( method = RequestMethod.GET, value = "/edit/{id}/password" )
     public ModelAndView getEditNetworkPasswords( @PathVariable( "id" ) Integer id ){
         Network network = service.getNetworkById( id );
-        PasswordForm passwordForm = new PasswordForm();
-        passwordForm.setSsid( network.getSsid() );
-        passwordForm.setLocationCity( network.getLocation().getCity() );
+        PasswordTO passwordTO = new PasswordTO();
+        passwordTO.setSsid( network.getSsid() );
+        passwordTO.setLocationCity( network.getLocation().getCity() );
 
-        return new ModelAndView( "pages/editpasswords", "passwordform", passwordForm );
-    }
-
-    @RequestMapping( method = RequestMethod.GET, value = "/comments/{id}" )
-    public ModelAndView getComments( @PathVariable( "id" ) Integer id ){
-        Network network = service.getNetworkById( id );
-        CommentForm commentForm = new CommentForm();
-        commentForm.setSsid( network.getSsid() );
-        commentForm.setComments( network.getComments() );
-
-        return new ModelAndView( "pages/comments", "commentform", commentForm );
+        return new ModelAndView( "pages/editpasswords", "passwordform", passwordTO );
     }
 
     //****************************************************************
@@ -126,100 +113,100 @@ public class NetworkController{
     //****************************************************************
 
     @RequestMapping( method = RequestMethod.POST, value = "/add" )
-    public String postAddNetwork( @Valid @ModelAttribute( "networkform" ) NetworkForm networkForm, BindingResult result ){
-        if( networkForm.getNetworkProtected() && networkForm.getNetworkPassword().trim().equals( "" ) )
+    public String postAddNetwork( @Valid @ModelAttribute( "networkform" ) NetworkTO networkTO, BindingResult result ){
+        if( networkTO.getNetworkProtected() && networkTO.getNetworkPassword().trim().equals( "" ) )
             result.rejectValue( "networkPassword", "NotBlank.NetworkForm.networkPassword" );
         if( result.hasErrors() )
             return "pages/addnetwork";
 
-        Pair<Double, Double> latLon = Converter.getLatLonJson( networkForm );
+        Pair<Double, Double> latLon = Converter.getLatLonJson( networkTO );
 
-        if( networkForm.getNetworkProtected() ){
+        if( networkTO.getNetworkProtected() ){
             service.addProtectedNetwork(
                     new ProtectedNetwork(
-                            networkForm.getNetworkSsid(),
+                            networkTO.getNetworkSsid(),
                             new Date(),
                             new Location(
-                                    networkForm.getLocationName(),
+                                    networkTO.getLocationName(),
                                     latLon.fst,
                                     latLon.snd,
-                                    networkForm.getLocationAddress(),
-                                    networkForm.getLocationCrossStreet(),
-                                    networkForm.getLocationCity(),
-                                    networkForm.getLocationZip(),
-                                    networkForm.getLocationCountry()
+                                    networkTO.getLocationAddress(),
+                                    networkTO.getLocationCrossStreet(),
+                                    networkTO.getLocationCity(),
+                                    networkTO.getLocationZip(),
+                                    networkTO.getLocationCountry()
                             ),
-                            networkForm.getNetworkPassword()
+                            networkTO.getNetworkPassword()
                     )
             );
         }else{
             service.addOpenNetwork(
                     new OpenNetwork(
-                            networkForm.getNetworkSsid(),
+                            networkTO.getNetworkSsid(),
                             new Date(),
                             new Location(
-                                    networkForm.getLocationName(),
+                                    networkTO.getLocationName(),
                                     latLon.fst,
                                     latLon.snd,
-                                    networkForm.getLocationAddress(),
-                                    networkForm.getLocationCrossStreet(),
-                                    networkForm.getLocationCity(),
-                                    networkForm.getLocationZip(),
-                                    networkForm.getLocationCountry()
+                                    networkTO.getLocationAddress(),
+                                    networkTO.getLocationCrossStreet(),
+                                    networkTO.getLocationCity(),
+                                    networkTO.getLocationZip(),
+                                    networkTO.getLocationCountry()
                             )
                     )
             );
         }
-        return "redirect:/?city=" + networkForm.getLocationCity();
+        return "redirect:/?city=" + networkTO.getLocationCity();
     }
 
     @RequestMapping( method = RequestMethod.POST, value = "/edit/{id}" )
-    public String postSaveNetwork( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "networkform" ) NetworkForm networkForm, BindingResult result ){
-        if( networkForm.getNetworkProtected() && networkForm.getNetworkPassword().trim().equals( "" ) )
+    public String postSaveNetwork( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "networkform" ) NetworkTO networkTO, BindingResult result ){
+        if( networkTO.getNetworkProtected() && networkTO.getNetworkPassword().trim().equals( "" ) )
             result.rejectValue( "networkPassword", "NotBlank.NetworkForm.networkPassword" );
         if( result.hasErrors() ) return "pages/editnetwork";
 
         Network network = service.getNetworkById( id );
-        Pair<Double, Double> latLon = Converter.getLatLonJson( networkForm );
+        Pair<Double, Double> latLon = Converter.getLatLonJson( networkTO );
         Location location = new Location(
-                networkForm.getLocationName(),
+                networkTO.getLocationName(),
                 latLon.fst,
                 latLon.snd,
-                networkForm.getLocationAddress(),
-                networkForm.getLocationCrossStreet(),
-                networkForm.getLocationCity(),
-                networkForm.getLocationZip(),
-                networkForm.getLocationCountry()
+                networkTO.getLocationAddress(),
+                networkTO.getLocationCrossStreet(),
+                networkTO.getLocationCity(),
+                networkTO.getLocationZip(),
+                networkTO.getLocationCountry()
         );
 
-        if( network.getType() == NetworkType.PROTECTED && networkForm.getNetworkProtected() ){
+        if( network.getType() == NetworkType.PROTECTED && networkTO.getNetworkProtected() ){
             // was protected, blijft protected
             ProtectedNetwork protectedNetwork = (ProtectedNetwork)network;
 
-            protectedNetwork.setSsid( networkForm.getNetworkSsid() );
-            protectedNetwork.setPassword( new Password( networkForm.getNetworkPassword() ) );
+            protectedNetwork.setSsid( networkTO.getNetworkSsid() );
+            protectedNetwork.setPassword( new Password( networkTO.getNetworkPassword() ) );
             protectedNetwork.setLocation( location );
             protectedNetwork.setTimestamp( new Date() );
 
             service.updateProtectedNetwork( protectedNetwork );
 
-        }else if( network.getType() == NetworkType.PROTECTED && !networkForm.getNetworkProtected() ){
+        }else if( network.getType() == NetworkType.PROTECTED && !networkTO.getNetworkProtected() ){
             // was protected, nu open
             service.deleteProtectedNetwork( (ProtectedNetwork)network );
 
-            postAddNetwork( networkForm, result );
+            postAddNetwork( networkTO, result );
 
-        }else if( network.getType() == NetworkType.OPEN && networkForm.getNetworkProtected() ){
+        }else if( network.getType() == NetworkType.OPEN && networkTO.getNetworkProtected() ){
             // was open, nu protected
             service.deleteOpenNetwork( (OpenNetwork)network );
 
-            postAddNetwork( networkForm, result );
+            postAddNetwork( networkTO, result );
 
-        }else if( network.getType() == NetworkType.OPEN && !networkForm.getNetworkProtected() ){
+        }else if( network.getType() == NetworkType.OPEN && !networkTO.getNetworkProtected() ){
             // was open, blijft open
             OpenNetwork openNetwork = (OpenNetwork)network;
 
-            openNetwork.setSsid( networkForm.getNetworkSsid() );
+            openNetwork.setSsid( networkTO.getNetworkSsid() );
             openNetwork.setLocation( location );
             openNetwork.setTimestamp( new Date() );
 
@@ -229,7 +216,7 @@ public class NetworkController{
             return "redirect:/error";
         }
 
-        return "redirect:/?city=" + networkForm.getLocationCity();
+        return "redirect:/?city=" + networkTO.getLocationCity();
     }
 
     //TODO change request method to post or delete
@@ -243,61 +230,17 @@ public class NetworkController{
     }
 
     @RequestMapping( method = RequestMethod.POST, value = "/edit/{id}/password" )
-    public String postEditPassword( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "passwordform" ) PasswordForm passwordForm, BindingResult result ){
+    public String postEditPassword( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "passwordform" ) PasswordTO passwordTO, BindingResult result ){
         if( result.hasErrors() ) return "pages/editpasswords";
 
         ProtectedNetwork protectedNetwork = service.getProtectedNetworkById( id );
 
-        protectedNetwork.addPassword( new Password( passwordForm.getPassword() ) );
+        protectedNetwork.addPassword( new Password( passwordTO.getPassword() ) );
         protectedNetwork.setTimestamp( new Date() );
         service.updateProtectedNetwork( protectedNetwork );
 
         //TODO remove city parameter
-        return "redirect:/?city=" + passwordForm.getLocationCity();
-    }
-
-    @RequestMapping( method = RequestMethod.POST, value = "/comments/{id}" )
-    public String postComment( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "commentform" ) CommentForm commentForm, BindingResult result ){
-        if( result.hasErrors() ) return "pages/comments";
-
-        Network network = service.getNetworkById( id );
-
-        network.addComment( new Comment( commentForm.getMessage() ) );
-        service.updateNetwork( network );
-
-        return "redirect:/comments/" + id;
-    }
-
-    @RequestMapping( method = RequestMethod.POST, value = "/vote/{network_id}/password/{password_id}" )
-    public String postVotePassword(
-            @PathVariable( "network_id" ) Integer network_id,
-            @PathVariable( "password_id" ) Integer password_id,
-            @RequestParam( value = "upvote", required = false ) String upvote,
-            @RequestParam( value = "downvote", required = false ) String downvote,
-            @RequestParam( value = "city", required = false ) String city ){
-
-        ProtectedNetwork network = service.getProtectedNetworkById( network_id );
-        Password password = service.getPasswordById( password_id );
-
-        if( !network.getPasswords().contains( password ) )
-            return "redirect:/error";
-
-        if( downvote == null )
-            password.upvote();
-        else if( upvote == null )
-            password.downvote();
-
-        network.setTimestamp( new Date() );
-        network.addPassword( password );
-
-        service.updateNetwork( network );
-        service.updatePassword( password );
-
-        // TODO remove city parameter
-        if( city == null )
-            return "redirect:/";
-        else
-            return "redirect:/?city=" + city;
+        return "redirect:/?city=" + passwordTO.getLocationCity();
     }
 
     //****************************************************************

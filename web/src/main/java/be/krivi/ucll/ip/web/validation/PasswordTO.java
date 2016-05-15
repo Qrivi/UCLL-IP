@@ -5,17 +5,17 @@ import org.hibernate.validator.constraints.NotBlank;
 /**
  * Created by Krivi on 01/04/16.
  */
-public class PasswordForm{
+public class PasswordTO{
 
     private String ssid;
 
-    @NotBlank( message = "{NotBlank.PasswordForm.password}" )
+    @NotBlank( message = "{NotBlank.PasswordTO.password}" )
     private String password;
 
     //TODO remove city propery
     private String locationCity;
 
-    public PasswordForm(){
+    public PasswordTO(){
     }
 
     public String getSsid(){

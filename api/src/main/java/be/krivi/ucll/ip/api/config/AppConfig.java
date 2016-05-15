@@ -31,6 +31,7 @@ public class AppConfig{
             properties.load( resourceStream );
         }catch( IOException e ){
             // spring is vies
+            // TODO beter opvangen :0))
         }
 
         return new NetworkService( properties );

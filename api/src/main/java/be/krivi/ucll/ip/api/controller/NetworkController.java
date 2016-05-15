@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 
-/**
- * Created by Krivi on 25/04/16.
- */
 @RestController
-@RequestMapping( "/" )
+@RequestMapping( "/networks" )
 public class NetworkController{
 
     @Autowired
@@ -25,7 +22,7 @@ public class NetworkController{
     //        service.addSpecialty(specialty);
     //    }
 
-    @RequestMapping( method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
+    @RequestMapping( method = RequestMethod.GET, value = "", produces = MediaType.APPLICATION_JSON_VALUE )
     public Collection<Network> getAllNetworks(){
         return service.getAllNetworks();
     }

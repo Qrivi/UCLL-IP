@@ -8,33 +8,33 @@ import javax.validation.constraints.Size;
 /**
  * Created by Krivi on 01/04/16.
  */
-public class NetworkForm{
+public class NetworkTO{
 
     private Integer networkId;
 
     private String locationName;
 
-    @NotBlank( message = "{NotBlank.NetworkForm.locationAddress}" )
+    @NotBlank( message = "{NotBlank.NetworkTO.locationAddress}" )
     private String locationAddress;
     private String locationCrossStreet;
 
-    @NotNull( message = "{NotNull.NetworkForm.locationZip}" )
+    @NotNull( message = "{NotNull.NetworkTO.locationZip}" )
     private Integer locationZip;
 
-    @NotBlank( message = "{NotBlank.NetworkForm.locationCity}" )
+    @NotBlank( message = "{NotBlank.NetworkTO.locationCity}" )
     private String locationCity;
 
-    @NotBlank( message = "{NotBlank.NetworkForm.locationCountry}" )
+    @NotBlank( message = "{NotBlank.NetworkTO.locationCountry}" )
     private String locationCountry;
 
-    @NotBlank( message = "{NotBlank.NetworkForm.networkSsid}" )
-    @Size( min = 1, max = 32, message = "{Size.NetworkForm.networkSsid}" )
+    @NotBlank( message = "{NotBlank.NetworkTO.networkSsid}" )
+    @Size( min = 1, max = 32, message = "{Size.NetworkTO.networkSsid}" )
     private String networkSsid;
 
     private Boolean networkProtected;
     private String networkPassword;
 
-    public NetworkForm(){
+    public NetworkTO(){
     }
 
     public Integer getNetworkId(){
