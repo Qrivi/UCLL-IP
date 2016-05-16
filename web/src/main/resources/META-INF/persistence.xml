@@ -17,7 +17,7 @@
             <property name="hibernate.connection.username" value="networks-admin"/>
             <property name="hibernate.connection.password" value="Paf9k7VkccLPZ47x"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.connection.provider_class"
                       value="org.hibernate.connection.C3P0ConnectionProvider"/>
 

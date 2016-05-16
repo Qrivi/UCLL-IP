@@ -5,7 +5,6 @@ import be.krivi.ucll.ip.domain.service.NetworkService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.io.IOException;
@@ -43,13 +42,4 @@ public class AppConfig{
         return new ContextListener();
         //<bean id="eventListenerBean" class="be.krivi.ucll.ip.web.listener.ContextListener"/>
     }
-
-    @Bean
-    public CharacterEncodingFilter characterEncodingFilter(){
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-        filter.setEncoding( "UTF-8" );
-        filter.setForceEncoding( true );
-        return filter;
-    }
-
 }

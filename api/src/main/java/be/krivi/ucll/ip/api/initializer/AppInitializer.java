@@ -17,6 +17,7 @@ import javax.servlet.ServletRegistration;
 public class AppInitializer implements WebApplicationInitializer{
 
     private static final String CONFIG_LOCATION = "be.krivi.ucll.ip.api.config";
+    private static final String CHAR_ENCODING = "UTF-8";
     private static final String MAPPING_URL = "/*";
 
     @Override
@@ -24,11 +25,12 @@ public class AppInitializer implements WebApplicationInitializer{
         WebApplicationContext context = getContext();
 
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
-        encodingFilter.setEncoding( "UTF-8" );
+        encodingFilter.setEncoding( CHAR_ENCODING );
         encodingFilter.setForceEncoding( true );
 
         servletContext.addListener( new ContextLoaderListener( context ) );
-        servletContext.addFilter( "encodingFilter", encodingFilter );
+        servletContext.addFilter( "encodingFilter", encodingFilter )
+                .addMappingForUrlPatterns( null, false, MAPPING_URL );
 
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet( "DispatcherServlet", new DispatcherServlet( context ) );
 
