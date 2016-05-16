@@ -104,6 +104,14 @@ public class NetworkController{
         return new ModelAndView( "pages/editpasswords", "passwordform", passwordTO );
     }
 
+    @RequestMapping( method = RequestMethod.GET, value = "/remove/{id}" )
+    public String postRemoveNetwork( @PathVariable( "id" ) Integer id ){
+        Network network = service.getNetworkById( id );
+        service.deleteNetwork( network );
+
+        return "redirect:/?city=" + network.getLocation().getCity();
+    }
+
     //****************************************************************
     // endregion
     //****************************************************************
@@ -219,16 +227,6 @@ public class NetworkController{
         return "redirect:/?city=" + networkTO.getLocationCity();
     }
 
-    //TODO change request method to post or delete
-    // was post maar spring forms wist forms inside springforms om een of andere reden :(
-    @RequestMapping( method = RequestMethod.GET, value = "/remove/{id}" )
-    public String postRemoveNetwork( @PathVariable( "id" ) Integer id ){
-        Network network = service.getNetworkById( id );
-        service.deleteNetwork( network );
-
-        return "redirect:/?city=" + network.getLocation().getCity();
-    }
-
     @RequestMapping( method = RequestMethod.POST, value = "/edit/{id}/password" )
     public String postEditPassword( @PathVariable( "id" ) Integer id, @Valid @ModelAttribute( "passwordform" ) PasswordTO passwordTO, BindingResult result ){
         if( result.hasErrors() ) return "pages/editpasswords";
@@ -239,7 +237,6 @@ public class NetworkController{
         protectedNetwork.setTimestamp( new Date() );
         service.updateProtectedNetwork( protectedNetwork );
 
-        //TODO remove city parameter
         return "redirect:/?city=" + passwordTO.getLocationCity();
     }
 

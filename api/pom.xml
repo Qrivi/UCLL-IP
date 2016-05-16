@@ -32,6 +32,7 @@
 
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
         <maven-war-plugin.version>2.3</maven-war-plugin.version>
+        <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
         <maven-dependency-plugin.version>2.6</maven-dependency-plugin.version>
         <maven-glassfish-plugin.version>2.1</maven-glassfish-plugin.version>
     </properties>
@@ -115,6 +116,15 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                    <configuration>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
