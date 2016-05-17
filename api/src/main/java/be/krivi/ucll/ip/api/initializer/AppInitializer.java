@@ -14,6 +14,7 @@ import javax.servlet.ServletRegistration;
 /**
  * Created by Krivi on 25/04/16.
  */
+
 public class AppInitializer implements WebApplicationInitializer{
 
     private static final String CONFIG_LOCATION = "be.krivi.ucll.ip.api.config";

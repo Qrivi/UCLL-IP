@@ -32,7 +32,7 @@
     <sf:form method="post" commandName="commentform">
         <sf:input placeholder="${plhAddComment}" maxlength="140" path="message" tabindex="1"/>
         <input type="submit" value="&#xf1d9;" class="fa">
-        <span class="error"><sf:errors path="message"/></span>
+        <span class="error" data-error-field="message"><sf:errors path="message"/></span>
     </sf:form>
 </section>
 

@@ -8,33 +8,33 @@ import javax.validation.constraints.Size;
 /**
  * Created by Krivi on 01/04/16.
  */
-public class NetworkTO{
+public class NetworkDTO{
 
     private Integer networkId;
 
     private String locationName;
 
-    @NotBlank( message = "{NotBlank.NetworkTO.locationAddress}" )
+    @NotBlank( message = "{NotBlank.NetworkDTO.locationAddress}" )
     private String locationAddress;
     private String locationCrossStreet;
 
-    @NotNull( message = "{NotNull.NetworkTO.locationZip}" )
+    @NotNull( message = "{NotNull.NetworkDTO.locationZip}" )
     private Integer locationZip;
 
-    @NotBlank( message = "{NotBlank.NetworkTO.locationCity}" )
+    @NotBlank( message = "{NotBlank.NetworkDTO.locationCity}" )
     private String locationCity;
 
-    @NotBlank( message = "{NotBlank.NetworkTO.locationCountry}" )
+    @NotBlank( message = "{NotBlank.NetworkDTO.locationCountry}" )
     private String locationCountry;
 
-    @NotBlank( message = "{NotBlank.NetworkTO.networkSsid}" )
-    @Size( min = 1, max = 32, message = "{Size.NetworkTO.networkSsid}" )
+    @NotBlank( message = "{NotBlank.NetworkDTO.networkSsid}" )
+    @Size( min = 1, max = 32, message = "{Size.NetworkDTO.networkSsid}" )
     private String networkSsid;
 
     private Boolean networkProtected;
     private String networkPassword;
 
-    public NetworkTO(){
+    public NetworkDTO(){
     }
 
     public Integer getNetworkId(){

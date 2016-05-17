@@ -1,21 +1,21 @@
-package be.krivi.ucll.ip.api.validation;
+package be.krivi.ucll.ip.web.validation;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * Created by Krivi on 01/04/16.
  */
-public class PasswordTO{
+public class PasswordDTO{
 
     private String ssid;
 
-    @NotBlank( message = "{NotBlank.PasswordTO.password}" )
+    @NotBlank( message = "{NotBlank.PasswordDTO.password}" )
     private String password;
 
     //TODO remove city propery
     private String locationCity;
 
-    public PasswordTO(){
+    public PasswordDTO(){
     }
 
     public String getSsid(){

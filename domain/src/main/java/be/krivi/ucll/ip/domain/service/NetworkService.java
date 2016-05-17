@@ -38,6 +38,7 @@ public class NetworkService{
             populateMap();
     }
 
+    //TODO Move to map implementation class
     private void populateMap(){
         try{
             addProtectedNetwork(

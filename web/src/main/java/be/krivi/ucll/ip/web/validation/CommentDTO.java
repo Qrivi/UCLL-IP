@@ -9,13 +9,13 @@ import java.util.Set;
 /**
  * Created by Krivi on 01/04/16.
  */
-public class CommentTO{
+public class CommentDTO{
 
-    @NotBlank( message = "{NotBlank.CommentTO.message}" )
-    @Size( min = 2, max = 140, message = "{Size.CommentTO.message}" )
+    @NotBlank( message = "{NotBlank.CommentDTO.message}" )
+    @Size( min = 2, max = 140, message = "{Size.CommentDTO.message}" )
     private String message;
 
-    public CommentTO(){
+    public CommentDTO(){
     }
 
     public String getMessage(){

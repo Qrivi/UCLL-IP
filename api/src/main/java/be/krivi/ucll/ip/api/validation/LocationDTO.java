@@ -1,5 +1,6 @@
 package be.krivi.ucll.ip.api.validation;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
@@ -7,30 +8,32 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by Krivi on 01/04/16.
  */
-public class LocationTO{
+
+@JsonIgnoreProperties( ignoreUnknown = true )
+public class LocationDTO{
 
     private String name;
 
-    @NotBlank( message = "{NotBlank.LocationTO.address}" )
+    @NotBlank( message = "{NotBlank.LocationDTO.address}" )
     private String address;
     private String crossStreet;
 
-    @NotNull( message = "{NotNull.LocationTO.zip}" )
+    @NotNull( message = "{NotNull.LocationDTO.zip}" )
     private Integer zip;
 
-    @NotBlank( message = "{NotBlank.LocationTO.city}" )
+    @NotBlank( message = "{NotBlank.LocationDTO.city}" )
     private String city;
 
-    @NotBlank( message = "{NotBlank.LocationTO.country}" )
+    @NotBlank( message = "{NotBlank.LocationDTO.country}" )
     private String country;
 
-    @NotNull( message = "{NotNull.LocationTO.lat}" )
+    @NotNull( message = "{NotNull.LocationDTO.lat}" )
     private Double lat;
 
-    @NotNull( message = "{NotNull.LocationTO.lon}" )
+    @NotNull( message = "{NotNull.LocationDTO.lon}" )
     private Double lon;
 
-    public LocationTO(){
+    public LocationDTO(){
     }
 
     public String getName(){
@@ -59,10 +62,6 @@ public class LocationTO{
 
     public Integer getZip(){
         return zip;
-    }
-
-    public void setZip( String zip ){
-        setZip( Integer.parseInt( zip ) );
     }
 
     public void setZip( Integer zip ){

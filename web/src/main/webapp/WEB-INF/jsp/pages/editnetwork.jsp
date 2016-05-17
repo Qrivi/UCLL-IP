@@ -23,30 +23,30 @@
         <h5><s:message code="lbl.NetworkDetails"/></h5>
         <div class="left">
             <sf:input type="text" placeholder="${plhSsid}" path="networkSsid" tabindex="1"/>
-            <span class="error"><sf:errors path="networkSsid"/></span>
+            <span class="error" data-error-field="ssid"><sf:errors path="networkSsid"/></span>
             <sf:checkbox id="box_hasPassword" value="true" path="networkProtected" tabindex="2"/>
             <label for="box_hasPassword"><s:message code="lbl.PasswordProtected"/></label>
         </div>
         <div class="right invisible" id="passwordfield">
             <sf:input type="text" placeholder="${plhPassword}" path="networkPassword" tabindex="3"/>
-            <span class="error"><sf:errors path="networkPassword"/></span>
+            <span class="error" data-error-field="password"><sf:errors path="networkPassword"/></span>
         </div>
         <h5><s:message code="lbl.NetworkLocation"/></h5>
         <div class="left">
             <sf:input type="text" placeholder="${plhName}" path="locationName" tabindex="4"/>
-            <span class="error"><sf:errors path="locationName"/></span>
+            <span class="error" data-error-field="location.name"><sf:errors path="locationName"/></span>
             <sf:input type="text" placeholder="${plhAddress}" path="locationAddress" tabindex="5"/>
-            <span class="error"><sf:errors path="locationAddress"/></span>
+            <span class="error" data-error-field="location.address"><sf:errors path="locationAddress"/></span>
             <sf:input type="number" min="1" placeholder="${plhZip}" path="locationZip" tabindex="7"/>
-            <span class="error"><sf:errors path="locationZip"/></span>
+            <span class="error" data-error-field="location.zip"><sf:errors path="locationZip"/></span>
             <sf:input type="text" placeholder="${plhCountry}" path="locationCountry" tabindex="9"/>
-            <span class="error"><sf:errors path="locationCountry"/></span>
+            <span class="error" data-error-field="location.country"><sf:errors path="locationCountry"/></span>
         </div>
         <div class="location right">
             <sf:input type="text" placeholder="${plhCrossStreet}" path="locationCrossStreet" tabindex="6"/>
-            <span class="error"><sf:errors path="locationCrossStreet"/></span>
+            <span class="error" data-error-field="location.crossStreet"><sf:errors path="locationCrossStreet"/></span>
             <sf:input type="text" placeholder="${plhCity}" path="locationCity" tabindex="8"/>
-            <span class="error"><sf:errors path="locationCity"/></span>
+            <span class="error" data-error-field="location.city"><sf:errors path="locationCity"/></span>
         </div>
         <div class="buttons">
             <a class="btnRemove" href="<c:url value='/remove/${networkform.networkId}'/>"><s:message

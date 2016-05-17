@@ -14,7 +14,7 @@
         <h4><s:message code="lbl.EditArg" arguments="${passwordform.ssid}"/></h4>
         <i class="fa fa-close"></i>
         <sf:input placeholder="${plhNewPassword}" path="password" tabindex="1"/>
-        <span class="error"><sf:errors path="password"/></span>
+        <span class="error" data-error-field="password"><sf:errors path="password"/></span>
         <div class="buttons">
             <sf:hidden path="ssid"/>
             <input type="submit" value="<s:message code="btn.Save"/>" class="btnSubmit">
