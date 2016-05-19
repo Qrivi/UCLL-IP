@@ -1,10 +1,8 @@
 package be.krivi.ucll.ip.web.validation;
 
-import be.krivi.ucll.ip.domain.core.Comment;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.Size;
-import java.util.Set;
 
 /**
  * Created by Krivi on 01/04/16.
