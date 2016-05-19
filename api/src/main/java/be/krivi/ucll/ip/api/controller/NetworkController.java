@@ -85,8 +85,7 @@ public class NetworkController{
     @Produces( "application/json" )
     @RequestMapping( method = RequestMethod.GET, value = "/city/{city}" )
     public Collection<Network> getAllNetworksFromCity( @PathVariable( "city" ) String city ){
-        // TODO implement return service.getAllNetworksFromCity( city )
-        return null;
+        return service.getAllNetworksFromCity( city );
     }
 
     //****************************************************************
@@ -158,6 +157,8 @@ public class NetworkController{
             return new ResponseEntity<>( new ErrorDTO( result ), HttpStatus.BAD_REQUEST );
 
         ProtectedNetwork network = service.getProtectedNetworkById( id );
+        if( network == null )
+            throw new NullPointerException( "{NullPointerException.ProtectedNetwork}" );
 
         network.addPassword( new Password( passwordDTO.getPassword() ) );
         network.setTimestamp( new Date() );

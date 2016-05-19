@@ -26,15 +26,15 @@ public class VoteController{
 
     @Produces( "application/json" )
     @RequestMapping( method = RequestMethod.POST, value = "/{id}" )
-    public ResponseEntity addPasswordToProtectedNetwork( @PathVariable( "id" ) Integer id, @RequestParam( value = "action", required = false ) String action ){
+    public ResponseEntity addVoteToPassword( @PathVariable( "id" ) Integer id, @RequestParam( value = "action", required = false ) String action ){
 
         Password password = service.getPasswordById( id );
         if( password == null )
             throw new NullPointerException( "{NullPointerException.Password}" );
 
-        if( action != null && action.equals( "upvote" ) )
+        if( action != null && action.toLowerCase().equals( "upvote" ) )
             password.upvote();
-        else if( action != null && action.equals( "downvote" ) )
+        else if( action != null && action.toLowerCase().equals( "downvote" ) )
             password.downvote();
 
         service.updatePassword( password );

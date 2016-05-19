@@ -127,6 +127,13 @@ public class NetworkService{
         ).collect( Collectors.toList() );
     }
 
+    public Collection<Network> getAllNetworksFromCity( String city ) throws DatabaseException{
+        return Stream.concat(
+                getAllOpenNetworksFromCity( city ).stream(),
+                getAllProtectedNetworksFromCity( city).stream()
+        ).collect( Collectors.toList() );
+    }
+
     public void addNetwork( Network network ) throws DatabaseException{
         if( network.getType() == NetworkType.OPEN )
             openNetworkDB.add( (OpenNetwork)network );
@@ -170,6 +177,10 @@ public class NetworkService{
         return openNetworkDB.getAll();
     }
 
+    public Collection<OpenNetwork> getAllOpenNetworksFromCity( String city ) throws DatabaseException{
+        return openNetworkDB.getAllFromCity( city );
+    }
+
     public void addOpenNetwork( OpenNetwork openNetwork ) throws DatabaseException{
         openNetworkDB.add( openNetwork );
     }
@@ -196,6 +207,10 @@ public class NetworkService{
 
     public Collection<ProtectedNetwork> getAllProtectedNetworks() throws DatabaseException{
         return protectedNetworkDB.getAll();
+    }
+
+    public Collection<ProtectedNetwork> getAllProtectedNetworksFromCity( String city ) throws DatabaseException{
+        return protectedNetworkDB.getAllFromCity( city );
     }
 
     public void addProtectedNetwork( ProtectedNetwork protectedNetwork ) throws DatabaseException{

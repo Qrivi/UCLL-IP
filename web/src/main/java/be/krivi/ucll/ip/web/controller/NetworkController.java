@@ -38,11 +38,7 @@ public class NetworkController{
     public ModelAndView getIndex( @RequestParam( value = "city", required = false ) String city ){
         if( city == null || city.equals( "" ) )
             return new ModelAndView( "index", "networks", service.getAllNetworks() ); //TODO why is this sorted upside-down?
-
-        //TODO implement GET /city={city} to filter shown networks by city
-        // postponed for testing purposes
-        // return new ModelAndView( "index", "networks", service.getAllNetworksFromCity( city ) );
-        return new ModelAndView( "index", "networks", service.getAllNetworks() );
+        return new ModelAndView( "index", "networks", service.getAllNetworksFromCity( city ) );
     }
 
     @RequestMapping( method = RequestMethod.GET, value = "/add" )
