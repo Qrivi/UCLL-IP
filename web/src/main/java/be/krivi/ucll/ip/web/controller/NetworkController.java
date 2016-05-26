@@ -53,7 +53,7 @@ public class NetworkController{
         Network network = service.getNetworkById( id );
 
         switch( network.getType() ){
-            case OPEN:
+            case PROTECTED:
                 ProtectedNetwork protectedNetwork = (ProtectedNetwork)network;
 
                 networkDTO.setNetworkId( protectedNetwork.getId() );
@@ -71,7 +71,7 @@ public class NetworkController{
 
                 return new ModelAndView( "pages/editnetwork", "networkform", networkDTO );
 
-            case PROTECTED:
+            case OPEN:
                 OpenNetwork openNetwork = (OpenNetwork)network;
 
                 networkDTO.setNetworkId( openNetwork.getId() );
