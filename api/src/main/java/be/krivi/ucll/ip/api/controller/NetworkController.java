@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@CrossOrigin
 @RequestMapping( "/networks" )
 public class NetworkController{
 
@@ -267,8 +268,8 @@ public class NetworkController{
     @ExceptionHandler( NullPointerException.class )
     public ResponseEntity handleException( Exception e ){
         Map<String, String> errors = new HashMap<>();
-        errors.put( "HTTP 404 Not Found", e.getMessage() );
+        errors.put( "404", "Not Found: " + e.getMessage() );
 
-        return new ResponseEntity<>( new ErrorDTO( errors ), HttpStatus.NOT_FOUND );
+        return new ResponseEntity<>( new ErrorDTO( "database", errors ), HttpStatus.NOT_FOUND );
     }
 }

@@ -22,8 +22,8 @@ public class ProtectedNetworkDTO{
     @Size( min = 5, max = 63, message = "{Size.ProtectedNetworkDTO.password}" )
     private String password;
 
+    // @NotNull( message = "{NotNull.ProtectedNetworkDTO.location}" )
     @Valid
-    @NotNull( message = "{NotNull.ProtectedNetworkDTO.location}" )
     private LocationDTO location;
 
     public ProtectedNetworkDTO(){

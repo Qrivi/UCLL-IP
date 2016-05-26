@@ -19,6 +19,7 @@ import javax.ws.rs.Produces;
 import java.util.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping( "/comments" )
 public class CommentController{
 
@@ -123,8 +124,8 @@ public class CommentController{
     @ExceptionHandler( NullPointerException.class )
     public ResponseEntity handleException( Exception e ){
         Map<String, String> errors = new HashMap<>();
-        errors.put( "HTTP 404 Not Found", e.getMessage() );
+        errors.put( "404", "Not Found: " + e.getMessage() );
 
-        return new ResponseEntity<>( new ErrorDTO( errors ), HttpStatus.NOT_FOUND );
+        return new ResponseEntity<>( new ErrorDTO( "database", errors ), HttpStatus.NOT_FOUND );
     }
 }

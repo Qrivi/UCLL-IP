@@ -13,26 +13,42 @@ import java.util.Map;
 
 public class ErrorDTO{
 
-    private Map<String, String> errors;
-
-    public ErrorDTO( Map<String, String> errors ){
-        this.errors = errors;
-    }
+    private Map<String, Map> errors;
 
     public ErrorDTO( BindingResult result ){
         this.errors = new HashMap<>();
+        Map<String, String> networkErrors = new HashMap<>();
+        Map<String, String> locationErrors = new HashMap<>();
 
         for( ObjectError error : result.getAllErrors() ){
-            FieldError e = (FieldError) error;
-            errors.put( e.getField(), error.getDefaultMessage() );
+            FieldError e = (FieldError)error;
+
+            if( e.getField().contains( "." ) )
+                locationErrors.put( e.getField().replace( "location.", "" ), error.getDefaultMessage() );
+            else
+                networkErrors.put( e.getField(), error.getDefaultMessage() );
+
+            if( !networkErrors.isEmpty() )
+                errors.put( "network", networkErrors );
+            if( !locationErrors.isEmpty() )
+                errors.put( "location", locationErrors );
         }
     }
 
-    public Map<String, String> getErrors(){
+    public ErrorDTO( String type, Map<String, String> map ){
+        this.errors = new HashMap<>();
+        errors.put( type, map );
+    }
+
+    public ErrorDTO( Map<String, Map> map ){
+        this.errors = map;
+    }
+
+    public Map<String, Map> getErrors(){
         return errors;
     }
 
-    public void setErrors( Map<String, String> errors ){
+    public void setErrors( Map<String, Map> errors ){
         this.errors = errors;
     }
 }

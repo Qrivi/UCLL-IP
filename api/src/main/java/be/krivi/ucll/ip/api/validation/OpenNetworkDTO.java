@@ -18,8 +18,8 @@ public class OpenNetworkDTO{
     @Size( min = 1, max = 32, message = "{Size.OpenNetworkDTO.ssid}" )
     private String ssid;
 
+    // @NotNull( message = "{NotNull.OpenNetworkDTO.location}" )
     @Valid
-    @NotNull( message = "{NotNull.OpenNetworkDTO.location}" )
     private LocationDTO location;
 
     public OpenNetworkDTO(){

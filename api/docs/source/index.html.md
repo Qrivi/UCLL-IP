@@ -181,7 +181,9 @@ This endpoint retrieves all protected networks.
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.Network}"
+    "database": {
+      "404": "Not Found: {NullPointerException.Network}"
+    }
   }
 }
 ```
@@ -236,7 +238,9 @@ id | The ID of the network to retrieve
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.OpenNetwork}"
+    "database": {
+      "404": "Not Found: {NullPointerException.OpenNetwork}"
+    }
   }
 }
 ```
@@ -301,7 +305,9 @@ id | The ID of the open network to retrieve
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.ProtectedNetwork}"
+    "database": {
+      "404": "Not Found: {NullPointerException.ProtectedNetwork}"
+    }
   }
 }
 ```
@@ -425,12 +431,16 @@ Parameter <code>city</code> is case insensitive.
 ```json
 {
   "errors": {
-    "ssid": "An SSID is required",
-    "location.lat": "A lattitude is required",
-    "location.lon": "A longitude is required",
-    "location.address": "An address is required",
-    "location.city": "A city is required",
-    ... : ...
+    "location": {
+      "address": "An address is required",
+      "city": "A city is required",
+      "lon": "A longitude is required",
+      "lat": "A lattitude is required",
+      ... : ...
+    },
+    "network": {
+      "ssid": "An SSID is required"
+    }
   }
 }
 ```
@@ -516,13 +526,17 @@ Unnecessary JSON fields are ignored.
 ```json
 {
   "errors": {
-    "ssid": "An SSID is required",
-    "location.lat": "A lattitude is required",
-    "location.lon": "A longitude is required",
-    "location.address": "An address is required",
-    "location.city": "A city is required",
-    "password": "A password is required",
-    ... : ...
+    "location": {
+      "address": "An address is required",
+      "city": "A city is required",
+      "lon": "A longitude is required",
+      "lat": "A lattitude is required",
+      ... : ...
+    },
+    "network": {
+      "password": "A password is required",
+      "ssid": "An SSID is required"
+    }
   }
 }
 ```
@@ -604,7 +618,9 @@ Unnecessary JSON fields are ignored.
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.Network}"
+    "database": {
+      "404": "Not Found: {NullPointerException.Network}"
+    }
   }
 }
 ```
@@ -614,7 +630,9 @@ Unnecessary JSON fields are ignored.
 ```json
 {
   "errors": {
-    "password": "A password is required"
+    "network": {
+      "password": "A password is required"
+    }
   }
 }
 ```
@@ -691,7 +709,9 @@ The returned JSON will not list the newly added password's ID
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": null
+    "database": {
+      "404": "Not Found: null"
+    }
   }
 }
 ```
@@ -701,12 +721,16 @@ The returned JSON will not list the newly added password's ID
 ```json
 {
   "errors": {
-    "ssid": "An SSID is required",
-    "location.lat": "A lattitude is required",
-    "location.lon": "A longitude is required",
-    "location.address": "An address is required",
-    "location.city": "A city is required",
-    ... : ...
+    "location": {
+      "address": "An address is required",
+      "city": "A city is required",
+      "lon": "A longitude is required",
+      "lat": "A lattitude is required",
+      ... : ...
+    },
+    "network": {
+      "ssid": "An SSID is required"
+    }
   }
 }
 ```
@@ -796,7 +820,9 @@ Unnecessary JSON fields are ignored.
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": null
+    "database": {
+      "404": "Not Found: null"
+    }
   }
 }
 ```
@@ -806,13 +832,17 @@ Unnecessary JSON fields are ignored.
 ```json
 {
   "errors": {
-    "ssid": "An SSID is required",
-    "location.lat": "A lattitude is required",
-    "location.lon": "A longitude is required",
-    "location.address": "An address is required",
-    "location.city": "A city is required",
-    "password": "A password is required",
-    ... : ...
+    "location": {
+      "address": "An address is required",
+      "city": "A city is required",
+      "lon": "A longitude is required",
+      "lat": "A lattitude is required",
+      ... : ...
+    },
+    "network": {
+      "password": "A password is required",
+      "ssid": "An SSID is required"
+    }
   }
 }
 ```
@@ -867,7 +897,9 @@ Unnecessary JSON fields are ignored.
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.Network}"
+    "database": {
+      "404": "Not Found: {NullPointerException.Network}"
+    }
   }
 }
 ```
@@ -916,7 +948,9 @@ id | The ID of the network to remove
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.OpenNetwork}"
+    "database": {
+      "404": "Not Found: {NullPointerException.OpenNetwork}"
+    }
   }
 }
 ```
@@ -982,7 +1016,9 @@ id | The ID of the open network to remove
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.ProtectedNetwork}"
+    "database": {
+      "404": "Not Found: {NullPointerException.ProtectedNetwork}"
+    }
   }
 }
 ```
@@ -1022,7 +1058,9 @@ id | The ID of the protected network to remove
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.Password}"
+    "database": {
+      "404": "Not Found: {NullPointerException.Password}"
+    }
   }
 }
 ```
@@ -1072,7 +1110,9 @@ The only actions that will affect the password are <code>upvote</code> and <code
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.Network}"
+    "database": {
+      "404": "Not Found: {NullPointerException.Network}"
+    }
   }
 }
 ```
@@ -1111,7 +1151,9 @@ id | The ID of the network of which to retrieve the comments
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.OpenNetwork}"
+    "database": {
+      "404": "Not Found: {NullPointerException.OpenNetwork}"
+    }
   }
 }
 ```
@@ -1150,7 +1192,9 @@ id | The ID of the open network of which to retrieve the comments
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.ProtectedNetwork}"
+    "database": {
+      "404": "Not Found: {NullPointerException.ProtectedNetwork}"
+    }
   }
 }
 ```
@@ -1218,7 +1262,9 @@ id | The ID of the protected network of which to retrieve the comments
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.Network}"
+    "database": {
+      "404": "Not Found: {NullPointerException.Network}"
+    }
   }
 }
 ```
@@ -1228,7 +1274,9 @@ id | The ID of the protected network of which to retrieve the comments
 ```json
 {
   "errors": {
-    "message": "Your comment must contain at least 2 and at max 140 characters"
+    "network": {
+      "message": "Your comment must contain at least 2 and at max 140 characters"
+    }
   }
 }
 ```
@@ -1306,7 +1354,9 @@ The returned JSON will not list the newly added comment’s ID
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.OpenNetwork}"
+    "database": {
+      "404": "Not Found: {NullPointerException.OpenNetwork}"
+    }
   }
 }
 ```
@@ -1316,7 +1366,9 @@ The returned JSON will not list the newly added comment’s ID
 ```json
 {
   "errors": {
-    "message": "Your comment must contain at least 2 and at max 140 characters"
+    "network": {
+      "message": "Your comment must contain at least 2 and at max 140 characters"
+    }
   }
 }
 ```
@@ -1407,7 +1459,9 @@ The returned JSON will not list the newly added comment’s ID
 ```json
 {
   "errors": {
-    "HTTP 404 Not Found": "{NullPointerException.Network}"
+    "database": {
+      "404": "Not Found: {NullPointerException.ProtectedNetwork}"
+    }
   }
 }
 ```
@@ -1417,7 +1471,9 @@ The returned JSON will not list the newly added comment’s ID
 ```json
 {
   "errors": {
-    "message": "Your comment must contain at least 2 and at max 140 characters"
+    "network": {
+      "message": "Your comment must contain at least 2 and at max 140 characters"
+    }
   }
 }
 ```
