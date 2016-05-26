@@ -1,17 +1,17 @@
 <section id="networkform">
     <h4>Add a new network</h4>
     <a href="#/"><i class="fa fa-close"></i></a>
-    <form name="form" data-ng-submit="processForm()">
+    <form data-ng-submit="processForm()">
         <h5>Network details</h5>
         <div class="left">
             <input type="text" placeholder="SSID" data-ng-model="network.ssid">
-            <span data-show="errors.ssid" class="error">{{ errors.ssid }}</span>
+            <span data-show="errors.network.ssid" class="error">{{ errors.network.ssid }}</span>
             <input type="checkbox" id="box_hasPassword" data-ng-model="network.hasPassword" data-ng-true-value="true">
             <label for="box_hasPassword">Password protected</label>
         </div>
         <div class="right" data-ng-show="network.hasPassword">
             <input type="text" placeholder="Password" data-ng-model="network.password">
-            <span data-show="errors.password" class="error">{{ errors.password }}</span>
+            <span data-show="errors.network.password" class="error">{{ errors.network.password }}</span>
         </div>
         <h5>Network location</h5>
         <div class="left">
@@ -31,7 +31,7 @@
             <span data-show="errors.location.city" class="error">{{ errors.location.city }}</span>
         </div>
         <div class="buttons">
-            <input type="submit" value="Opslaan" class="btnSubmit">
+            <input type="submit" value="Save" class="btnSubmit">
         </div>
     </form>
 </section>

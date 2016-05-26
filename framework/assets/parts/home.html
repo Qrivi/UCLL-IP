@@ -4,8 +4,8 @@
         <header>
             <h2>{{ network.ssid }}</h2>
             <p>
-                <i data-ng-show="{{ !network.passwords }}" class="fa fa-lock"></i>
-                <i data-ng-show="{{ network.passwords }}" class="fa fa-unlock-alt"></i>
+                <i data-ng-show="{{ !network.passwords }}" class="fa fa-unlock-alt"></i>
+                <i data-ng-show="{{ network.passwords }}" class="fa fa-lock"></i>
             </p>
         </header>
         <section>
@@ -21,15 +21,15 @@
                 {{ network.location.zip }} {{ network.location.city }}
             </p>
         </section>
-        <section class="passwords" data-ng-show="{{network.passwords != undefined}}">
+        <section class="passwords" data-ng-show="{{ network.passwords != undefined }}">
             <h3>Password</h3>
             <a class="edit" href="#edit/{{ network.id }}/password">&#xf044;</a>
             <ul>
                 <li data-ng-repeat="password in network.passwords">{{ password.password }}
-                    <form action="#" method="post">
-                        <input type="submit" name="upvote" value="&#xf164;">
+                    <form>
+                        <input type="button" name="upvote" value="&#xf164;" data-ng-click="vote(password.id, 'upvote')">
                         <span>{{ password.score > 0 ? "+" + password.score : password.score }}</span>
-                        <input type="submit" name="downvote" value="&#xf165;">
+                        <input type="button" name="downvote" value="&#xf165;" data-ng-click="vote(password.id, 'downvote')">
                     </form>
                 </li>
             </ul>

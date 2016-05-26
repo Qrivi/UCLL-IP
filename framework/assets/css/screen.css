@@ -709,13 +709,17 @@ main > div {
 }
 
 .ng-enter {
-    animation: slideInRight .5s both ease-in;
+    animation: slideInRight .4s both ease-in;
     z-index: 9999;
 }
 
 .ng-leave {
-    animation: slideOutRight .5s both ease-in;
+    animation: slideOutRight .4s both ease-in;
     z-index: 8888;
+}
+
+#comments .ng-leave {
+    animation: none;
 }
 
 @keyframes slideInRight {
