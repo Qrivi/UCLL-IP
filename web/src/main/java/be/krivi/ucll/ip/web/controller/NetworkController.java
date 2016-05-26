@@ -36,7 +36,7 @@ public class NetworkController{
 
     @RequestMapping( method = RequestMethod.GET )
     public ModelAndView getIndex( @RequestParam( value = "city", required = false ) String city ){
-        if( city == null || city.equals( "" ) )
+        if( city == null || city.equals( "null" ) || city.equals( "" ) )
             return new ModelAndView( "index", "networks", service.getAllNetworks() ); //TODO why is this sorted upside-down?
         return new ModelAndView( "index", "networks", service.getAllNetworksFromCity( city ) );
     }
