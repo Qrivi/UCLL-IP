@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Networks</title>
+
+    <link rel="stylesheet" media="screen" href="assets/css/screen.css">
+</head>
+<body data-ng-app="networksApp">
+<header>
+    <section id="top">
+        <h1><a href="#">Networks</a></h1>
+        <a href="#add"><i class="fa fa-plus-circle"></i> Add network</a>
+        <form action="" method="get">
+            <label for="txt_cityName">near the city of</label>
+            <input type="text" name="city" value="Leuven" id="txt_cityName" autocomplete="off">
+            <input type="submit" class="fa" value="&#xf040;">
+        </form>
+    </section>
+</header>
+
+<main>
+    <section id="map">
+        Loading the map...
+    </section>
+
+    <div data-ng-view>
+    </div>
+</main>
+
+<footer>
+    <a href="http://193.191.187.14:10228/web" style="float: left;">Static</a>
+</footer>
+
+<noscript>
+    JavaScript is absolutely required in order to use this web service.
+</noscript>
+
+<script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-animate.min.js"></script>
+<script src="assets/js/map.js"></script>
+<script src="assets/js/app.js"></script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCE41BGnnoE6BvD8NNAKJ-OhrOhyb2rSnw&callback=init"></script>
+</body>
+</html>

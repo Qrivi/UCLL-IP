@@ -1,0 +1,30 @@
+<section id="networkform">
+    <h4>Edit &ldquo;McDonald's Free WiFi&rdquo;</h4>
+    <a href="#"><i class="fa fa-close"></i></a>
+    <form method="post" action="">
+        <h5>Network details</h5>
+        <div class="left">
+            <input type="text" placeholder="SSID"><span data-error="ssid" class="error"></span>
+            <input type="checkbox" id="box_hasPassword" data-ng-true-value="true" data-ng-model="hasPassword">
+            <label for="box_hasPassword">Password protected</label>
+        </div>
+        <div class="right" data-ng-show="hasPassword">
+            <input type="text" placeholder="Password"><span data-error="password" class="error"></span>
+        </div>
+        <h5>Network location</h5>
+        <div class="left">
+            <input type="text" placeholder="Name"><span data-error="location.name" class="error"></span>
+            <input type="text" placeholder="Address"><span data-error="location.address" class="error"></span>
+            <input type="number" placeholder="Postal code"><span data-error="location.crossStreet" class="error"></span>
+            <input type="text" placeholder="Country"><span data-error="location.country" class="error"></span>
+        </div>
+        <div class="location right">
+            <input type="text" placeholder="Cross street"><span data-error="location.crossStreet" class="error"></span>
+            <input type="text" placeholder="City"><span data-error="location.city" class="error"></span>
+        </div>
+        <div class="buttons">
+            <input type="submit" value="Verwijderen" class="btnRemove">
+            <input type="submit" value="Opslaan" class="btnSubmit">
+        </div>
+    </form>
+</section>

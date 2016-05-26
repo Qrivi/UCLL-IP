@@ -1,0 +1,44 @@
+<section id="cards">
+    <article data-ng-repeat="network in networks" data-lat="{{ network.location.lat }}"
+             data-lon="{{ network.location.lon }}">
+        <header>
+            <h2>{{ network.ssid }}</h2>
+            <p>
+                <i data-ng-show="{{ !network.passwords }}" class="fa fa-lock"></i>
+                <i data-ng-show="{{ network.passwords }}" class="fa fa-unlock-alt"></i>
+            </p>
+        </header>
+        <section>
+            <h3>Address</h3>
+            <a class="edit" href="#edit/{{ network.id }}">&#xf044;</a>
+
+            <p class="address">
+                <em data-ng-show="{{ network.location.name.length > 0 }}">{{ network.location.name }}</em><br
+                    data-ng-show="{{ network.location.name.length > 0 }}">
+                {{ network.location.address }}
+                <i data-ng-show="{{ network.location.crossStreet.length > 0 }}">({{ network.location.crossStreet
+                    }})</i><br>
+                {{ network.location.zip }} {{ network.location.city }}
+            </p>
+        </section>
+        <section class="passwords" data-ng-show="{{network.passwords != undefined}}">
+            <h3>Password</h3>
+            <a class="edit" href="#edit/{{ network.id }}/password">&#xf044;</a>
+            <ul>
+                <li data-ng-repeat="password in network.passwords">{{ password.password }}
+                    <form action="#" method="post">
+                        <input type="submit" name="upvote" value="&#xf164;">
+                        <span>{{ password.score > 0 ? "+" + password.score : password.score }}</span>
+                        <input type="submit" name="downvote" value="&#xf165;">
+                    </form>
+                </li>
+            </ul>
+        </section>
+        <footer>
+            <a title="Add comment" href="#comments/{{ network.id }}">
+                {{ network.comments.length }} comment{{ network.comments.length != 1 ? "s" : "" }} on this network
+                <i class="fa fa-pencil"></i>
+            </a>
+        </footer>
+    </article>
+</section>
