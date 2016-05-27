@@ -6,22 +6,31 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>be.krivi.ucll.ip</groupId>
+    <artifactId>domain</artifactId>
+    <version>1.0.RELEASE</version>
+
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <java.version>1.8</java.version>
+
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        
+        <junit.version>4.11</junit.version>
         <hibernate-validation.version>5.1.3.Final</hibernate-validation.version>
         <hibernate-jpa.version>1.0.0.Final</hibernate-jpa.version>
         <hibernate-entitymanager.version>4.3.1.Final</hibernate-entitymanager.version>
         <mysql.version>5.1.6</mysql.version>
-    </properties>
 
-    <groupId>be.krivi.ucll.ip</groupId>
-    <artifactId>domain</artifactId>
-    <version>1.0.RELEASE</version>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>${junit.version}</version>
         </dependency>
 
         <dependency>
@@ -52,10 +61,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <compilerArguments>
+                        <endorseddirs>${endorsed.dir}</endorseddirs>
+                    </compilerArguments>
                 </configuration>
             </plugin>
         </plugins>
